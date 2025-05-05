@@ -1,5 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://bv6fauegj44qo"]
+[gd_scene load_steps=4 format=3 uid="uid://bv6fauegj44qo"]
 
+[ext_resource type="Script" uid="uid://cnq51rbq3hwca" path="res://character.gd" id="1_4ftl0"]
 [ext_resource type="SpriteFrames" uid="uid://ciyljemaukclm" path="res://Entities/Brim/Brim.tres" id="1_p2neg"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_onrkg"]
@@ -7,12 +8,13 @@ radius = 0.0950031
 height = 0.279578
 
 [node name="Brim" type="CharacterBody3D"]
+script = ExtResource("1_4ftl0")
 metadata/_edit_group_ = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_onrkg")
 
 [node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="."]
 texture_filter = 0
 sprite_frames = ExtResource("1_p2neg")
 animation = &"stand_right"
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-shape = SubResource("CapsuleShape3D_onrkg")

@@ -30,4 +30,5 @@ func _update_preview():
 	$Panel/StartGame.visible = true
 	
 func _on_start_button_pressed():
+	print("Character Selected: " + Global.selected_character)
 	get_tree().change_scene_to_file("res://overworld.tscn")

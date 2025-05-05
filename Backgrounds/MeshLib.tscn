@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://b4pol8pilkme8"]
+[gd_scene load_steps=37 format=3 uid="uid://b4pol8pilkme8"]
 
 [ext_resource type="Texture2D" uid="uid://bl2p8tojwsfbs" path="res://Backgrounds/Grass/grass_bottomcenter.png" id="1_su8ph"]
 [ext_resource type="Texture2D" uid="uid://cenpucdxb8bu0" path="res://Backgrounds/Grass/grass_bottomleft.png" id="2_16ho8"]
@@ -17,6 +17,8 @@ texture_filter = 0
 [sub_resource type="BoxMesh" id="BoxMesh_ymp84"]
 material = SubResource("StandardMaterial3D_1mxl7")
 
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_su8ph"]
+
 [sub_resource type="BoxShape3D" id="BoxShape3D_df75b"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5nodm"]
@@ -27,6 +29,8 @@ texture_filter = 0
 [sub_resource type="BoxMesh" id="BoxMesh_sqljf"]
 material = SubResource("StandardMaterial3D_5nodm")
 
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_16ho8"]
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1dm7o"]
 albedo_texture = ExtResource("3_4dwti")
 uv1_scale = Vector3(3, 2, 1)
@@ -34,6 +38,8 @@ texture_filter = 0
 
 [sub_resource type="BoxMesh" id="BoxMesh_nriqu"]
 material = SubResource("StandardMaterial3D_1dm7o")
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_4dwti"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_n7rgc"]
 albedo_texture = ExtResource("4_6vacl")
@@ -54,6 +60,8 @@ texture_filter = 0
 [sub_resource type="BoxMesh" id="BoxMesh_gy333"]
 material = SubResource("StandardMaterial3D_jhvy4")
 
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_vrewc"]
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_abvv8"]
 albedo_texture = ExtResource("5_vrewc")
 uv1_scale = Vector3(3, 2, 1)
@@ -61,6 +69,8 @@ texture_filter = 0
 
 [sub_resource type="BoxMesh" id="BoxMesh_mr8ca"]
 material = SubResource("StandardMaterial3D_abvv8")
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_a5t0h"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qd58w"]
 albedo_texture = ExtResource("6_a5t0h")
@@ -70,6 +80,8 @@ texture_filter = 0
 [sub_resource type="BoxMesh" id="BoxMesh_rxv16"]
 material = SubResource("StandardMaterial3D_qd58w")
 
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_o1tnt"]
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_s3irp"]
 albedo_texture = ExtResource("7_o1tnt")
 uv1_scale = Vector3(3, 2, 1)
@@ -77,6 +89,8 @@ texture_filter = 0
 
 [sub_resource type="BoxMesh" id="BoxMesh_0ctjt"]
 material = SubResource("StandardMaterial3D_s3irp")
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_kibfx"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vu3ub"]
 albedo_texture = ExtResource("8_kibfx")
@@ -86,12 +100,15 @@ texture_filter = 0
 [sub_resource type="BoxMesh" id="BoxMesh_0niie"]
 material = SubResource("StandardMaterial3D_vu3ub")
 
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_ymp84"]
+
 [node name="MeshLib" type="Node3D"]
 
 [node name="grass_bottomcenter" type="MeshInstance3D" parent="."]
 mesh = SubResource("BoxMesh_ymp84")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="grass_bottomcenter"]
+physics_material_override = SubResource("PhysicsMaterial_su8ph")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="grass_bottomcenter/StaticBody3D"]
 shape = SubResource("BoxShape3D_df75b")
@@ -100,21 +117,21 @@ shape = SubResource("BoxShape3D_df75b")
 mesh = SubResource("BoxMesh_sqljf")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="grass_bottomleft"]
+physics_material_override = SubResource("PhysicsMaterial_16ho8")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="grass_bottomleft/StaticBody3D"]
 shape = SubResource("BoxShape3D_df75b")
 
 [node name="grass_bottomright" type="MeshInstance3D" parent="."]
-visible = false
 mesh = SubResource("BoxMesh_nriqu")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="grass_bottomright"]
+physics_material_override = SubResource("PhysicsMaterial_4dwti")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="grass_bottomright/StaticBody3D"]
 shape = SubResource("BoxShape3D_df75b")
 
 [node name="grass_center" type="MeshInstance3D" parent="."]
-visible = false
 mesh = SubResource("BoxMesh_e8ucw")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="grass_center"]
@@ -123,19 +140,19 @@ mesh = SubResource("BoxMesh_e8ucw")
 shape = SubResource("BoxShape3D_df75b")
 
 [node name="grass_left" type="MeshInstance3D" parent="."]
-visible = false
 mesh = SubResource("BoxMesh_gy333")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="grass_left"]
+physics_material_override = SubResource("PhysicsMaterial_vrewc")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="grass_left/StaticBody3D"]
 shape = SubResource("BoxShape3D_df75b")
 
 [node name="grass_right" type="MeshInstance3D" parent="."]
-visible = false
 mesh = SubResource("BoxMesh_mr8ca")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="grass_right"]
+physics_material_override = SubResource("PhysicsMaterial_a5t0h")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="grass_right/StaticBody3D"]
 shape = SubResource("BoxShape3D_df75b")
@@ -144,6 +161,7 @@ shape = SubResource("BoxShape3D_df75b")
 mesh = SubResource("BoxMesh_rxv16")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="grass_topcenter"]
+physics_material_override = SubResource("PhysicsMaterial_o1tnt")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="grass_topcenter/StaticBody3D"]
 shape = SubResource("BoxShape3D_df75b")
@@ -152,6 +170,7 @@ shape = SubResource("BoxShape3D_df75b")
 mesh = SubResource("BoxMesh_0ctjt")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="grass_topleft"]
+physics_material_override = SubResource("PhysicsMaterial_kibfx")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="grass_topleft/StaticBody3D"]
 shape = SubResource("BoxShape3D_df75b")
@@ -160,6 +179,13 @@ shape = SubResource("BoxShape3D_df75b")
 mesh = SubResource("BoxMesh_0niie")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="grass_topright"]
+physics_material_override = SubResource("PhysicsMaterial_ymp84")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="grass_topright/StaticBody3D"]
+shape = SubResource("BoxShape3D_df75b")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+physics_material_override = SubResource("PhysicsMaterial_ymp84")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
 shape = SubResource("BoxShape3D_df75b")

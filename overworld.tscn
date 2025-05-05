@@ -1,29 +1,45 @@
-[gd_scene load_steps=5 format=3 uid="uid://byipuimt5c0e8"]
+[gd_scene load_steps=10 format=3 uid="uid://byipuimt5c0e8"]
 
 [ext_resource type="Script" uid="uid://56bnlwdn71ib" path="res://overworld.gd" id="1_v726c"]
-[ext_resource type="MeshLibrary" uid="uid://d7cqwh5r0m1r" path="res://MeshLib.tres" id="2_v726c"]
+[ext_resource type="MeshLibrary" uid="uid://bje6ypahlruyk" path="res://Backgrounds/MeshLib.tres" id="2_v726c"]
+[ext_resource type="Texture2D" uid="uid://hnjfnw2qacoa" path="res://Backgrounds/Grass/grass_topcenter.png" id="3_nyb65"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_v726c"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_v726c"]
 bg_color = Color(0.6, 0.6, 0.6, 0.360784)
 
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_nyb65"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_v726c"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_824ie"]
+albedo_texture = ExtResource("3_nyb65")
+uv1_scale = Vector3(3, 2, 1)
+texture_filter = 0
+
+[sub_resource type="BoxMesh" id="BoxMesh_omswd"]
+material = SubResource("StandardMaterial3D_824ie")
+
 [node name="Overworld" type="Node3D"]
 script = ExtResource("1_v726c")
 
-[node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.902585, 0.430511, 0, -0.430511, 0.902585, 0, 2.875, 6.68)
+[node name="CameraPivot" type="Node3D" parent="."]
+
+[node name="Camera3D" type="Camera3D" parent="CameraPivot"]
+transform = Transform3D(1, 0, 0, 0, 0.977401, 0.211393, 0, -0.211393, 0.977401, 0.0257568, 4, 10.5916)
 projection = 1
 current = true
-size = 1.14408
+size = 3.506
 
 [node name="GridMap" type="GridMap" parent="."]
 mesh_library = ExtResource("2_v726c")
 physics_material = SubResource("PhysicsMaterial_v726c")
 cell_size = Vector3(1, 1, 1)
 data = {
-"cells": PackedInt32Array(65533, 65533, 3, 65534, 65533, 3, 65534, 65534, 3, 65535, 65534, 3, 65535, 65535, 3, 0, 65535, 3, 0, 0, 3, 1, 0, 3, 1, 1, 3, 2, 1, 3, 2, 2, 3, 65533, 65534, 3, 65533, 65535, 3, 65533, 0, 3, 65533, 1, 3, 65533, 2, 3, 65534, 65535, 3, 65534, 0, 3, 65534, 1, 3, 65534, 2, 3, 65535, 65533, 3, 65535, 0, 3, 65535, 1, 3, 65535, 2, 3, 0, 65533, 3, 0, 65534, 3, 0, 1, 3, 0, 2, 3, 1, 65533, 3, 1, 65534, 3, 1, 65535, 3, 1, 2, 3, 2, 65533, 3, 2, 65534, 3, 2, 65535, 3, 2, 0, 3, 65532, 3, 983041, 3, 3, 983042, 65533, 3, 983040, 65534, 3, 983040, 65535, 3, 983040, 0, 3, 983040, 1, 3, 983040, 2, 3, 983040, 65532, 2, 983044, 65532, 1, 983044, 65532, 0, 983044, 65532, 65535, 983044, 65532, 65534, 983044, 65532, 65533, 983044, 3, 2, 983045, 3, 1, 983045, 3, 0, 983045, 3, 65535, 983045, 3, 65534, 983045, 3, 65533, 983045, 65533, 65532, 983046, 65534, 65532, 983046, 65535, 65532, 983046, 0, 65532, 983046, 1, 65532, 983046, 2, 65532, 983046, 65532, 65532, 983047, 3, 65532, 983048)
+"cells": PackedInt32Array(65533, 65533, 3, 65533, 65534, 3, 65533, 65535, 3, 65533, 0, 3, 65533, 1, 3, 65533, 2, 3, 65534, 65533, 3, 65534, 65534, 3, 65534, 65535, 3, 65534, 0, 3, 65534, 1, 3, 65534, 2, 3, 65535, 65533, 3, 65535, 65534, 3, 65535, 65535, 3, 65535, 0, 3, 65535, 1, 3, 65535, 2, 3, 0, 65533, 3, 0, 65534, 3, 0, 65535, 3, 0, 0, 3, 0, 1, 3, 0, 2, 3, 1, 65533, 3, 1, 65534, 3, 1, 65535, 3, 1, 0, 3, 1, 1, 3, 1, 2, 3, 2, 65533, 3, 2, 65534, 3, 2, 65535, 3, 2, 0, 3, 2, 1, 3, 2, 2, 3, 131069, 65532, 6, 131070, 65532, 6, 131071, 65532, 6, 65536, 65532, 6, 65537, 65532, 6, 65538, 65532, 6, 65539, 65533, 6, 65539, 65534, 6, 65539, 65535, 6, 65539, 0, 6, 65539, 1, 6, 65539, 2, 6, 131068, 65533, 6, 131068, 65534, 6, 131068, 65535, 6, 131068, 0, 6, 131068, 1, 6, 131068, 2, 6, 65533, 3, 6, 65534, 3, 6, 65535, 3, 6, 0, 3, 6, 1, 3, 6, 2, 3, 6, 3, 3, 7, 65532, 3, 8)
 }
+metadata/_editor_floor_ = Vector3(0, 1, 0)
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.819152, -0.260398, 0.51106, 0, 0.891007, 0.453991, -0.573577, -0.371887, 0.72987, 0, 2.57, 0)
@@ -96,6 +112,17 @@ text = "Resume"
 layout_mode = 2
 theme_override_font_sizes/font_size = 52
 text = "Quit Game"
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.20984, 0)
+physics_material_override = SubResource("PhysicsMaterial_nyb65")
+metadata/_edit_group_ = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+shape = SubResource("BoxShape3D_v726c")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D"]
+mesh = SubResource("BoxMesh_omswd")
 
 [connection signal="pressed" from="Panel/EscMenu/Control/VBoxContainer/Resume" to="." method="_on_resume_button_pressed"]
 [connection signal="pressed" from="Panel/EscMenu/Control/VBoxContainer/Quit" to="." method="_on_quit_button_pressed"]

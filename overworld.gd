@@ -1,33 +1,59 @@
 extends Node3D
 
-@onready var camera = $Camera3D
+@onready var camera = $CameraPivot/Camera3D
 @onready var fps_label = $ScreenUI/FPSLabel
 @onready var pause_menu = $Panel/EscMenu
+@onready var camera_pivot = $CameraPivot
 
-var player_scene = preload("res://player.tscn") # Load the player scene
+# Character variables
+var player_scene = load(Global.characters[Global.selected_character]) # Load the player scene
+var character
+
+# Camera Movement variables
+var sensitivity = 0.2
+var rotation_y = 0
+var rotation_x = 0
+var is_dragging = false
 
 func _ready():
-	if get_node_or_null("Player") == null:  # Check if Player exists
-		var player_instance = player_scene.instantiate()
-		player_instance.position = Vector3(0, 2, 0)
-		add_child(player_instance)
-		print("Player instantiated successfully!")
-	else:
-		print("Player already exists, skipping instantiation.")
+	# Instantiate the character
+	character = player_scene.instantiate()
+	character.position = Vector3(0, 2, 0)
+	add_child(character)
+	print("Player instantiated successfully!")
 	
-	camera.position = Vector3(0, 3, 7)
-	$Player.position = Vector3(0, 2, 0)
-	camera.look_at($Player.position)
+	#Initialize Player and Camera Positioning
+	camera_pivot.position = Vector3(0, 2, 5)
+	character.position = Vector3(0, 2, 0)
+	camera.look_at(character.position)
 	
+	#Show mouse
+	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 
-func _process(delta):
-	camera.position = lerp(camera.position, $Player.position + Vector3(0, 3, 7), 1)
-	camera.look_at($Player.position)
+func _physics_process(delta):
+	var target_position = character.position + Vector3(0, 2, 5)
+	camera_pivot.position = camera_pivot.position.lerp(target_position, 0.1)
+	camera.look_at(character.position)
 	fps_label.text = "FPS: " + str(Engine.get_frames_per_second())
 	
 func _input(event):
-	if event.is_action_pressed("ui_cancel"):
+	if event.is_action_pressed("ui_cancel"): # Escape key
 		toggle_pause()
+	if event is InputEventMouseButton:
+		if event.button_index == MOUSE_BUTTON_LEFT:
+			is_dragging = event.pressed
+		if event.button_index == MOUSE_BUTTON_WHEEL_DOWN:
+			camera.size += 0.5
+		if event.button_index == MOUSE_BUTTON_WHEEL_UP:
+			camera.size -= 0.5
+	if is_dragging and event is InputEventMouseMotion:
+		rotate_camera(event.relative)
+			
+func rotate_camera(mouse_movement):
+	rotation_y -= mouse_movement.x * sensitivity
+	rotation_x -= mouse_movement.y * sensitivity
+	camera_pivot.rotation.y = deg_to_rad(rotation_y)
+	camera_pivot.rotation.x = deg_to_rad(rotation_x)
 
 func toggle_pause():
 	if Engine.time_scale == 1:
@@ -44,3 +70,4 @@ func _on_resume_button_pressed():
 	
 func _on_quit_button_pressed():
 	get_tree().quit()
+	
