@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://nnyssdhmxnu6"]
+
+[ext_resource type="SpriteFrames" uid="uid://beip8s6jmao6v" path="res://Entities/Zach/Zach.tres" id="1_x076j"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_onrkg"]
+radius = 0.102853
+height = 0.279578
+
+[node name="Zach" type="CharacterBody3D"]
+metadata/_edit_group_ = true
+
+[node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="."]
+texture_filter = 0
+sprite_frames = ExtResource("1_x076j")
+animation = &"stand_right"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_onrkg")

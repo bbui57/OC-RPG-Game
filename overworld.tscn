@@ -1,0 +1,101 @@
+[gd_scene load_steps=5 format=3 uid="uid://byipuimt5c0e8"]
+
+[ext_resource type="Script" uid="uid://56bnlwdn71ib" path="res://overworld.gd" id="1_v726c"]
+[ext_resource type="MeshLibrary" uid="uid://d7cqwh5r0m1r" path="res://MeshLib.tres" id="2_v726c"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_v726c"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_v726c"]
+bg_color = Color(0.6, 0.6, 0.6, 0.360784)
+
+[node name="Overworld" type="Node3D"]
+script = ExtResource("1_v726c")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.902585, 0.430511, 0, -0.430511, 0.902585, 0, 2.875, 6.68)
+projection = 1
+current = true
+size = 1.14408
+
+[node name="GridMap" type="GridMap" parent="."]
+mesh_library = ExtResource("2_v726c")
+physics_material = SubResource("PhysicsMaterial_v726c")
+cell_size = Vector3(1, 1, 1)
+data = {
+"cells": PackedInt32Array(65533, 65533, 3, 65534, 65533, 3, 65534, 65534, 3, 65535, 65534, 3, 65535, 65535, 3, 0, 65535, 3, 0, 0, 3, 1, 0, 3, 1, 1, 3, 2, 1, 3, 2, 2, 3, 65533, 65534, 3, 65533, 65535, 3, 65533, 0, 3, 65533, 1, 3, 65533, 2, 3, 65534, 65535, 3, 65534, 0, 3, 65534, 1, 3, 65534, 2, 3, 65535, 65533, 3, 65535, 0, 3, 65535, 1, 3, 65535, 2, 3, 0, 65533, 3, 0, 65534, 3, 0, 1, 3, 0, 2, 3, 1, 65533, 3, 1, 65534, 3, 1, 65535, 3, 1, 2, 3, 2, 65533, 3, 2, 65534, 3, 2, 65535, 3, 2, 0, 3, 65532, 3, 983041, 3, 3, 983042, 65533, 3, 983040, 65534, 3, 983040, 65535, 3, 983040, 0, 3, 983040, 1, 3, 983040, 2, 3, 983040, 65532, 2, 983044, 65532, 1, 983044, 65532, 0, 983044, 65532, 65535, 983044, 65532, 65534, 983044, 65532, 65533, 983044, 3, 2, 983045, 3, 1, 983045, 3, 0, 983045, 3, 65535, 983045, 3, 65534, 983045, 3, 65533, 983045, 65533, 65532, 983046, 65534, 65532, 983046, 65535, 65532, 983046, 0, 65532, 983046, 1, 65532, 983046, 2, 65532, 983046, 65532, 65532, 983047, 3, 65532, 983048)
+}
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.819152, -0.260398, 0.51106, 0, 0.891007, 0.453991, -0.573577, -0.371887, 0.72987, 0, 2.57, 0)
+
+[node name="ScreenUI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="FPSLabel" type="Label" parent="ScreenUI"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+
+[node name="Panel" type="Panel" parent="."]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_v726c")
+
+[node name="EscMenu" type="CanvasLayer" parent="Panel"]
+visible = false
+follow_viewport_enabled = true
+
+[node name="Control" type="Control" parent="Panel/EscMenu"]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.0
+
+[node name="Game Paused" type="Label" parent="Panel/EscMenu/Control"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -264.0
+offset_top = -319.0
+offset_right = 265.0
+offset_bottom = -209.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 80
+text = "Game Paused"
+horizontal_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/EscMenu/Control"]
+layout_mode = 0
+offset_left = -139.0
+offset_top = -37.0
+offset_right = 139.0
+offset_bottom = 127.0
+metadata/_edit_group_ = true
+
+[node name="Resume" type="Button" parent="Panel/EscMenu/Control/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 52
+text = "Resume"
+
+[node name="Quit" type="Button" parent="Panel/EscMenu/Control/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 52
+text = "Quit Game"
+
+[connection signal="pressed" from="Panel/EscMenu/Control/VBoxContainer/Resume" to="." method="_on_resume_button_pressed"]
+[connection signal="pressed" from="Panel/EscMenu/Control/VBoxContainer/Quit" to="." method="_on_quit_button_pressed"]

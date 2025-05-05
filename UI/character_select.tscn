@@ -1,0 +1,190 @@
+[gd_scene load_steps=19 format=3 uid="uid://cmfnppc35m51w"]
+
+[ext_resource type="Script" uid="uid://cnthjfjlvckjs" path="res://UI/character_select.gd" id="1_5okj5"]
+[ext_resource type="Texture2D" uid="uid://b8qoar5vuwcbx" path="res://Entities/Brim/Brim.png" id="2_0dk3e"]
+[ext_resource type="Texture2D" uid="uid://donoxxf1ncyke" path="res://Entities/Ciri/Ciri.png" id="3_ucc1k"]
+[ext_resource type="Texture2D" uid="uid://cucnqcsomxvmq" path="res://Entities/Yuxiel/Yuxiel.png" id="4_j6pnw"]
+[ext_resource type="Texture2D" uid="uid://d0aqnky51tb76" path="res://Entities/Zach/Zach.png" id="5_pmkiu"]
+
+[sub_resource type="Gradient" id="Gradient_0dk3e"]
+colors = PackedColorArray(0.281187, 0.281187, 0.281187, 1, 0.583649, 0.3685, 0.451717, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_ucc1k"]
+gradient = SubResource("Gradient_0dk3e")
+fill_to = Vector2(0.963303, 0.59633)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_j6pnw"]
+texture = SubResource("GradientTexture2D_ucc1k")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0dk3e"]
+atlas = ExtResource("2_0dk3e")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ucc1k"]
+atlas = ExtResource("2_0dk3e")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j6pnw"]
+atlas = ExtResource("3_ucc1k")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pmkiu"]
+atlas = ExtResource("3_ucc1k")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vfamg"]
+atlas = ExtResource("4_j6pnw")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qpkcc"]
+atlas = ExtResource("4_j6pnw")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dg0ud"]
+atlas = ExtResource("5_pmkiu")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_08aom"]
+atlas = ExtResource("5_pmkiu")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_bca85"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0dk3e")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ucc1k")
+}],
+"loop": true,
+"name": &"Brim",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j6pnw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pmkiu")
+}],
+"loop": true,
+"name": &"Ciri",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vfamg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qpkcc")
+}],
+"loop": true,
+"name": &"Yuxiel",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dg0ud")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_08aom")
+}],
+"loop": true,
+"name": &"Zach",
+"speed": 5.0
+}]
+
+[sub_resource type="ImageTexture" id="ImageTexture_0dk3e"]
+
+[node name="CharacterSelect" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_5okj5")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_j6pnw")
+
+[node name="HeaderLabel" type="Label" parent="Panel"]
+layout_mode = 0
+offset_left = 37.0
+offset_top = 47.0
+offset_right = 924.0
+offset_bottom = 157.0
+theme_override_font_sizes/font_size = 80
+text = "Choose Your Character"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 37.0
+offset_top = -342.0
+offset_right = 462.0
+offset_bottom = 3.0
+grow_vertical = 2
+metadata/_edit_group_ = true
+
+[node name="Yuxiel" type="Button" parent="Panel/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 52
+text = "Yuxiel"
+
+[node name="Zach" type="Button" parent="Panel/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 52
+text = "Zach Vallent"
+
+[node name="Ciri" type="Button" parent="Panel/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 52
+text = "C'iri"
+
+[node name="Brim" type="Button" parent="Panel/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 52
+text = "Brim Lasluk"
+
+[node name="PreviewSprite" type="AnimatedSprite2D" parent="Panel"]
+visible = false
+position = Vector2(710, 788)
+scale = Vector2(16.58, 16.58)
+sprite_frames = SubResource("SpriteFrames_bca85")
+animation = &"Zach"
+
+[node name="PreviewArt" type="TextureRect" parent="Panel"]
+visible = false
+layout_mode = 0
+offset_left = 949.0
+offset_top = 47.0
+offset_right = 1891.0
+offset_bottom = 989.0
+texture = SubResource("ImageTexture_0dk3e")
+stretch_mode = 4
+
+[node name="StartGame" type="Button" parent="Panel"]
+visible = false
+layout_mode = 0
+offset_left = 76.0
+offset_top = 876.0
+offset_right = 411.0
+offset_bottom = 967.0
+theme_override_font_sizes/font_size = 60
+text = "Start Game"
+
+[connection signal="pressed" from="Panel/VBoxContainer/Yuxiel" to="." method="_on_yuxiel_button_pressed"]
+[connection signal="pressed" from="Panel/VBoxContainer/Zach" to="." method="_on_zach_button_pressed"]
+[connection signal="pressed" from="Panel/VBoxContainer/Ciri" to="." method="_on_ciri_button_pressed"]
+[connection signal="pressed" from="Panel/VBoxContainer/Brim" to="." method="_on_brim_button_pressed"]
+[connection signal="pressed" from="Panel/StartGame" to="." method="_on_start_button_pressed"]

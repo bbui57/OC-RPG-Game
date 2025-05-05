@@ -1,0 +1,82 @@
+[gd_scene load_steps=5 format=3 uid="uid://blqk3xld7iyqb"]
+
+[ext_resource type="Script" uid="uid://c0n3e5vw26wq8" path="res://UI/title_screen.gd" id="1_iaef4"]
+
+[sub_resource type="Gradient" id="Gradient_iaef4"]
+colors = PackedColorArray(0.325441, 0.325441, 0.325441, 1, 0.654518, 0.355019, 0.290449, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_coop4"]
+gradient = SubResource("Gradient_iaef4")
+fill_from = Vector2(0.577982, 0.0963303)
+fill_to = Vector2(0, 0.481651)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_5whv5"]
+texture = SubResource("GradientTexture2D_coop4")
+
+[node name="TitleScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 8.0
+offset_top = -16.0
+offset_right = 8.0
+offset_bottom = -16.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_iaef4")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_5whv5")
+
+[node name="Game Title" type="Label" parent="Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -448.0
+offset_top = -356.0
+offset_right = 438.0
+offset_bottom = -246.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 80
+text = "Original Character RPG"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -248.0
+offset_top = -28.0
+offset_right = 252.0
+offset_bottom = 176.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+metadata/_edit_group_ = true
+
+[node name="New Game" type="Button" parent="Panel/VBoxContainer"]
+custom_minimum_size = Vector2(200, 100)
+layout_mode = 2
+theme_override_font_sizes/font_size = 52
+text = "New Game"
+
+[node name="Settings" type="Button" parent="Panel/VBoxContainer"]
+custom_minimum_size = Vector2(500, 100)
+layout_mode = 2
+theme_override_font_sizes/font_size = 52
+text = "Settings"
+
+[connection signal="pressed" from="Panel/VBoxContainer/New Game" to="." method="_on_new_game_button_pressed"]
