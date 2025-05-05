@@ -18,4 +18,6 @@ shape = SubResource("CapsuleShape3D_onrkg")
 [node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="."]
 texture_filter = 0
 sprite_frames = ExtResource("1_xws33")
-animation = &"stand_right"
+animation = &"move_back"
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]

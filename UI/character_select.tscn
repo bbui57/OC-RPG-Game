@@ -161,7 +161,7 @@ visible = false
 position = Vector2(710, 788)
 scale = Vector2(16.58, 16.58)
 sprite_frames = SubResource("SpriteFrames_bca85")
-animation = &"Zach"
+animation = &"Yuxiel"
 
 [node name="PreviewArt" type="TextureRect" parent="Panel"]
 visible = false

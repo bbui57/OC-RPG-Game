@@ -1,12 +1,12 @@
 extends Node
 
-var selected_character = "Yuxiel"
+var selected_character = 0
 
 var characters = {
-	"Yuxiel": "res://Entities/Yuxiel/yuxiel.tscn",
-	"Zach": "res://Entities/Zach/zach.tscn",
-	"C'iri": "res://Entities/Ciri/ciri.tscn",
-	"Brim": "res://Entities/Brim/brim.tscn"
+	0: "res://Entities/Yuxiel/yuxiel.tscn",
+	1: "res://Entities/Zach/zach.tscn",
+	2: "res://Entities/Ciri/ciri.tscn",
+	3: "res://Entities/Brim/brim.tscn"
 }
 
 func _ready():

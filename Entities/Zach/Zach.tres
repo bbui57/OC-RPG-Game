@@ -1,6 +1,14 @@
 [gd_resource type="SpriteFrames" load_steps=14 format=3 uid="uid://beip8s6jmao6v"]
 
-[ext_resource type="Texture2D" uid="uid://d0aqnky51tb76" path="res://Entities/Zach/Zach.png" id="1_wfoi2"]
+[ext_resource type="Texture2D" uid="uid://btxmju2ictfkd" path="res://Entities/Zach/Zach.png" id="1_wfoi2"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7tfvx"]
+atlas = ExtResource("1_wfoi2")
+region = Rect2(32, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jf4ds"]
+atlas = ExtResource("1_wfoi2")
+region = Rect2(64, 32, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_tkoan"]
 atlas = ExtResource("1_wfoi2")
@@ -26,14 +34,6 @@ region = Rect2(32, 64, 32, 32)
 atlas = ExtResource("1_wfoi2")
 region = Rect2(64, 64, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_7tfvx"]
-atlas = ExtResource("1_wfoi2")
-region = Rect2(32, 32, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_jf4ds"]
-atlas = ExtResource("1_wfoi2")
-region = Rect2(64, 32, 32, 32)
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_iiv0a"]
 atlas = ExtResource("1_wfoi2")
 region = Rect2(0, 32, 32, 32)
@@ -54,13 +54,24 @@ region = Rect2(0, 64, 32, 32)
 animations = [{
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_7tfvx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jf4ds")
+}],
+"loop": true,
+"name": &"move_back",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_tkoan")
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_wyvl7")
 }],
 "loop": true,
-"name": &"move_down",
+"name": &"move_front",
 "speed": 5.0
 }, {
 "frames": [{
@@ -83,17 +94,6 @@ animations = [{
 }],
 "loop": true,
 "name": &"move_right",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_7tfvx")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_jf4ds")
-}],
-"loop": true,
-"name": &"move_up",
 "speed": 5.0
 }, {
 "frames": [{

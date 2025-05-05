@@ -8,6 +8,9 @@ extends Node3D
 # Character variables
 var player_scene = load(Global.characters[Global.selected_character]) # Load the player scene
 var character
+var npc1
+var npc2
+var npc3
 
 # Camera Movement variables
 var sensitivity = 0.2
@@ -16,11 +19,9 @@ var rotation_x = 0
 var is_dragging = false
 
 func _ready():
-	# Instantiate the character
-	character = player_scene.instantiate()
-	character.position = Vector3(0, 2, 0)
-	add_child(character)
-	print("Player instantiated successfully!")
+	# Instantiate the characters
+	spawn_characters()
+	character = get_tree().get_first_node_in_group("player")
 	
 	#Initialize Player and Camera Positioning
 	camera_pivot.position = Vector3(0, 2, 5)
@@ -62,6 +63,27 @@ func toggle_pause():
 		$Panel.visible = true
 	else:
 		_on_resume_button_pressed()
+
+func spawn_characters():
+	for i in range(len(Global.characters)):
+		var char = load(Global.characters[i]).instantiate()
+		
+		if i == Global.selected_character:
+			char.set_script(preload("res://character.gd"))
+			set_player(char)
+		else:
+			char.set_script(preload("res://follower.gd"))
+			char.position = Vector3(randf_range(-2, 2), 2, randf_range(-2, 2))
+		
+		char.scale = Vector3(4, 4, 4)
+		add_child(char)
+		print("Spawned: " + char.name)
+
+func set_player(character):
+	character.add_to_group("player")
+	for follower in get_tree().get_nodes_in_group("player"):
+		if follower != character:
+			follower.remove_from_group("player")
 		
 func _on_resume_button_pressed():
 	Engine.time_scale = 1

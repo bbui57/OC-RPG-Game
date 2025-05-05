@@ -2,7 +2,6 @@ extends CharacterBody3D
 
 @export var speed = 100
 var gravity: float = 50.0
-var jump = 50
 
 @onready var anim = $AnimatedSprite3D
 
@@ -21,7 +20,7 @@ func _physics_process(delta):
 	velocity = Vector3.ZERO
 	
 	if not is_on_floor():
-		velocity.y -= gravity * delta
+		velocity.y -= gravity * speed * delta
 	
 	if Engine.time_scale == 0:
 		return
@@ -53,9 +52,9 @@ func _physics_process(delta):
 		if velocity.x < 0:
 			anim.play("move_left")
 		if velocity.z > 0:
-			anim.play("move_down")
+			anim.play("move_front")
 		if velocity.z < 0:
-			anim.play("move_up")
+			anim.play("move_back")
 	else:
 		if Input.is_action_just_released("move_right"):
 			anim.play("stand_right")
