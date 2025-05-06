@@ -1,20 +1,20 @@
 extends CharacterBody3D
 
-@export var speed = 100
-var gravity: float = 50.0
+@export var speed: float = 50.0
+@export var gravity: float = 50.0
+@export var jump: float = 20.0
 
 @onready var anim = $AnimatedSprite3D
 
-#Map boundaries
-var grid_size: int = 10
-var cell_size: float = 1.0
-var square = grid_size * cell_size
-var min_x = square
-var max_x = square
-var min_z = square
-var max_z = square
+var facing = "front"
+
+func _ready():
+	anim = get_node("AnimatedSprite3D")
 
 func _physics_process(delta):
+	
+	if anim == null:
+		anim = get_node_or_null("AnimatedSprite3D")
 	
 	# Controls
 	velocity = Vector3.ZERO
@@ -27,43 +27,37 @@ func _physics_process(delta):
 		
 	if Input.is_action_pressed("move_right"):
 		velocity.x = 1
+		facing = "right"
 	if Input.is_action_pressed("move_left"):
 		velocity.x = -1
+		facing = "left"
 	if Input.is_action_pressed("move_down"):
 		velocity.z = 1
+		facing = "front"
 	if Input.is_action_pressed("move_up"):
 		velocity.z = -1
+		facing = "back"
 	
 	# Handle multiple movement inputs
-	var input = Vector2(
+	var input = Vector3(
 		Input.get_action_strength("move_right") - Input.get_action_strength("move_left"),
+		0,
 		Input.get_action_strength("move_down") - Input.get_action_strength("move_up")
 	)
-	if abs(input.x) > abs(input.y):
-		input.y = 0
+	if abs(input.x) > abs(input.z):
+		input.z = 0
 	else:
 		input.x = 0
 
 	if velocity.length() > 0:
-		velocity.x = input.x * speed * delta
-		velocity.z = input.y * speed * delta
-		if velocity.x > 0:
-			anim.play("move_right")
-		if velocity.x < 0:
-			anim.play("move_left")
-		if velocity.z > 0:
-			anim.play("move_front")
-		if velocity.z < 0:
-			anim.play("move_back")
+		var move_direction = transform.basis * input
+		velocity.x = move_direction.x * speed * delta
+		velocity.z = move_direction.z * speed * delta
+		
+		anim.play("move_" + facing)
 	else:
-		if Input.is_action_just_released("move_right"):
-			anim.play("stand_right")
-		if Input.is_action_just_released("move_left"):
-			anim.play("stand_left")
-		if Input.is_action_just_released("move_down"):
-			anim.play("stand_front")
-		if Input.is_action_just_released("move_up"):
-			anim.play("stand_back")
+		if anim.is_playing():
+			anim.play("stand_" + facing)
 	
 	# Boundary Setting
 	var grid_size: int = 4  # Set the grid dimensions

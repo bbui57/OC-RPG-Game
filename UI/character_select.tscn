@@ -1,10 +1,10 @@
 [gd_scene load_steps=19 format=3 uid="uid://cmfnppc35m51w"]
 
-[ext_resource type="Script" uid="uid://cnthjfjlvckjs" path="res://UI/character_select.gd" id="1_5okj5"]
-[ext_resource type="Texture2D" uid="uid://b8qoar5vuwcbx" path="res://Entities/Brim/Brim.png" id="2_0dk3e"]
-[ext_resource type="Texture2D" uid="uid://donoxxf1ncyke" path="res://Entities/Ciri/Ciri.png" id="3_ucc1k"]
-[ext_resource type="Texture2D" uid="uid://cucnqcsomxvmq" path="res://Entities/Yuxiel/Yuxiel.png" id="4_j6pnw"]
-[ext_resource type="Texture2D" uid="uid://btxmju2ictfkd" path="res://Entities/Zach/Zach.png" id="5_pmkiu"]
+[ext_resource type="Script" uid="uid://cnthjfjlvckjs" path="res://scripts/character_select.gd" id="1_0hgph"]
+[ext_resource type="Texture2D" uid="uid://b8qoar5vuwcbx" path="res://entities/Brim/Brim.png" id="2_u6j12"]
+[ext_resource type="Texture2D" uid="uid://donoxxf1ncyke" path="res://entities/Ciri/Ciri.png" id="3_8j5xr"]
+[ext_resource type="Texture2D" uid="uid://cucnqcsomxvmq" path="res://entities/Yuxiel/Yuxiel.png" id="4_insa7"]
+[ext_resource type="Texture2D" uid="uid://btxmju2ictfkd" path="res://entities/Zach/Zach.png" id="5_p8qou"]
 
 [sub_resource type="Gradient" id="Gradient_0dk3e"]
 colors = PackedColorArray(0.281187, 0.281187, 0.281187, 1, 0.583649, 0.3685, 0.451717, 1)
@@ -17,35 +17,35 @@ fill_to = Vector2(0.963303, 0.59633)
 texture = SubResource("GradientTexture2D_ucc1k")
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_0dk3e"]
-atlas = ExtResource("2_0dk3e")
+atlas = ExtResource("2_u6j12")
 region = Rect2(32, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ucc1k"]
-atlas = ExtResource("2_0dk3e")
+atlas = ExtResource("2_u6j12")
 region = Rect2(64, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_j6pnw"]
-atlas = ExtResource("3_ucc1k")
+atlas = ExtResource("3_8j5xr")
 region = Rect2(32, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_pmkiu"]
-atlas = ExtResource("3_ucc1k")
+atlas = ExtResource("3_8j5xr")
 region = Rect2(64, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_vfamg"]
-atlas = ExtResource("4_j6pnw")
+atlas = ExtResource("4_insa7")
 region = Rect2(32, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_qpkcc"]
-atlas = ExtResource("4_j6pnw")
+atlas = ExtResource("4_insa7")
 region = Rect2(64, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_dg0ud"]
-atlas = ExtResource("5_pmkiu")
+atlas = ExtResource("5_p8qou")
 region = Rect2(32, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_08aom"]
-atlas = ExtResource("5_pmkiu")
+atlas = ExtResource("5_p8qou")
 region = Rect2(64, 0, 32, 32)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_bca85"]
@@ -104,7 +104,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_5okj5")
+script = ExtResource("1_0hgph")
 
 [node name="Panel" type="Panel" parent="."]
 layout_mode = 1
@@ -165,13 +165,19 @@ animation = &"Yuxiel"
 
 [node name="PreviewArt" type="TextureRect" parent="Panel"]
 visible = false
-layout_mode = 0
-offset_left = 949.0
-offset_top = 47.0
-offset_right = 1891.0
-offset_bottom = 989.0
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -942.0
+offset_top = -471.0
+offset_bottom = 471.0
+grow_horizontal = 0
+grow_vertical = 2
 texture = SubResource("ImageTexture_0dk3e")
-stretch_mode = 4
+stretch_mode = 5
 
 [node name="StartGame" type="Button" parent="Panel"]
 visible = false

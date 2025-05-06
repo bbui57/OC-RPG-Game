@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://donoxxf1ncyke"
-path="res://.godot/imported/Ciri.png-4c6d1ffca6ecbe50e224717d14633079.ctex"
+path="res://.godot/imported/Ciri.png-e1d5ae5334552c141a3830688a3de312.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Entities/Ciri/Ciri.png"
-dest_files=["res://.godot/imported/Ciri.png-4c6d1ffca6ecbe50e224717d14633079.ctex"]
+source_file="res://entities/Ciri/Ciri.png"
+dest_files=["res://.godot/imported/Ciri.png-e1d5ae5334552c141a3830688a3de312.ctex"]
 
 [params]
 

@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bas2i8a6de2x4"
-path="res://.godot/imported/zach_art.png-e31fa2b27eb55e0b26fd04049ec5727b.ctex"
+path="res://.godot/imported/zach_art.png-999dcf9a708a27cc54eccc0517fb2e52.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Entities/Zach/zach_art.png"
-dest_files=["res://.godot/imported/zach_art.png-e31fa2b27eb55e0b26fd04049ec5727b.ctex"]
+source_file="res://entities/Zach/zach_art.png"
+dest_files=["res://.godot/imported/zach_art.png-999dcf9a708a27cc54eccc0517fb2e52.ctex"]
 
 [params]
 

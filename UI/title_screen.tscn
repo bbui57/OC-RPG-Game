@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://blqk3xld7iyqb"]
 
-[ext_resource type="Script" uid="uid://c0n3e5vw26wq8" path="res://UI/title_screen.gd" id="1_iaef4"]
+[ext_resource type="Script" uid="uid://c0n3e5vw26wq8" path="res://scripts/title_screen.gd" id="1_iaef4"]
 
 [sub_resource type="Gradient" id="Gradient_iaef4"]
 colors = PackedColorArray(0.325441, 0.325441, 0.325441, 1, 0.654518, 0.355019, 0.290449, 1)
@@ -42,14 +42,15 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -448.0
-offset_top = -356.0
-offset_right = 438.0
-offset_bottom = -246.0
+offset_left = -443.0
+offset_top = -340.0
+offset_right = 443.0
+offset_bottom = -230.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_font_sizes/font_size = 80
 text = "Original Character RPG"
+horizontal_alignment = 1
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Panel"]
 layout_mode = 1
@@ -58,10 +59,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -248.0
-offset_top = -28.0
-offset_right = 252.0
-offset_bottom = 176.0
+offset_left = -250.0
+offset_top = -40.0
+offset_right = 250.0
+offset_bottom = 164.0
 grow_horizontal = 2
 grow_vertical = 2
 alignment = 1

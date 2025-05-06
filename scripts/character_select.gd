@@ -8,25 +8,25 @@ var selected_char
 func _on_yuxiel_button_pressed():
 	Global.selected_character = 0
 	selected_char = "Yuxiel"
-	preview_art.texture = load("res://Entities/Yuxiel/yuxiel_art.png")
+	preview_art.texture = load("res://entities/Yuxiel/yuxiel_art.png")
 	_update_preview()
 	
 func _on_zach_button_pressed():
 	Global.selected_character = 1
 	selected_char = "Zach"
-	preview_art.texture = load("res://Entities/Zach/zach_art.png")
+	preview_art.texture = load("res://entities/Zach/zach_art.png")
 	_update_preview()
 	
 func _on_ciri_button_pressed():
 	Global.selected_character = 2
 	selected_char = "Ciri"
-	preview_art.texture = load("res://Entities/Ciri/ciri_art.png")
+	preview_art.texture = load("res://entities/Ciri/ciri_art.png")
 	_update_preview()
 
 func _on_brim_button_pressed():
 	Global.selected_character = 3
 	selected_char = "Brim"
-	preview_art.texture = load("res://Entities/Brim/brim_art.png")
+	preview_art.texture = load("res://entities/Brim/brim_art.png")
 	_update_preview()
 	
 func _update_preview():
@@ -36,4 +36,4 @@ func _update_preview():
 	$Panel/StartGame.visible = true
 	
 func _on_start_button_pressed():
-	get_tree().change_scene_to_file("res://overworld.tscn")
+	get_tree().change_scene_to_file("res://scenes/overworld.tscn")

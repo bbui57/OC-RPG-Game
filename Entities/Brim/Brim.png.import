@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://b8qoar5vuwcbx"
-path="res://.godot/imported/Brim.png-e37f8594e8f135c5fd0ea3c268069d05.ctex"
+path="res://.godot/imported/Brim.png-3a8bad94cc6753849b343d055654c6cd.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Entities/Brim/Brim.png"
-dest_files=["res://.godot/imported/Brim.png-e37f8594e8f135c5fd0ea3c268069d05.ctex"]
+source_file="res://entities/Brim/Brim.png"
+dest_files=["res://.godot/imported/Brim.png-3a8bad94cc6753849b343d055654c6cd.ctex"]
 
 [params]
 

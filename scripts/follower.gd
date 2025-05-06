@@ -13,11 +13,22 @@ var update_timer = 0.0
 var update_interval = 0.5
 
 func _ready():
+	anim = get_node("AnimatedSprite3D")
+	nav = get_node("NavigationAgent3D")
 	player = get_tree().get_first_node_in_group("player")  # Find the player automatically
 	nav.path_desired_distance = 0.5
-	nav.target_desired_distance = 1.0
+	nav.target_desired_distance = 2.0
+	velocity.y = -gravity
+	
 
 func _physics_process(delta):
+	if anim == null:
+		anim = get_node_or_null("AnimatedSprite3D")
+	if nav == null:
+		nav = get_node_or_null("NavigationAgent3D")
+		
+	if not is_on_floor():
+			velocity.y -= gravity * speed * delta
 	if player:
 		# Controls
 		if not is_on_floor():
@@ -39,14 +50,10 @@ func _physics_process(delta):
 			velocity = direction * speed * delta
 		
 		if velocity.length() > 0:
-			if velocity.x > 0:
-				facing = "right"
-			if velocity.x < 0:
-				facing = "left"
-			if velocity.z > 0:
-				facing = "front"
-			if velocity.z < 0:
-				facing = "back"
+			if abs(velocity.x) > abs(velocity.z):
+				facing = "right" if velocity.x > 0 else "left"
+			else:
+				facing = "front" if velocity.z > 0 else "back"
 			
 			anim.play("move_" + facing)
 		else:
@@ -60,7 +67,7 @@ func _physics_process(delta):
 	var min_z = -grid_size * cell_size
 	var max_z = grid_size * cell_size
 	
-	var target_position = position + Vector3(velocity.x * delta, 0, velocity.z * delta)
+	var target_position = position + Vector3(velocity.x * delta, velocity.y * delta, velocity.z * delta)
 
 	# Constrain movement to grid boundaries
 	target_position.x = clamp(target_position.x, min_x, max_x)

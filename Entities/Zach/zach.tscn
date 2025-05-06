@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://nnyssdhmxnu6"]
 
-[ext_resource type="Script" uid="uid://cnq51rbq3hwca" path="res://character.gd" id="1_lw8nl"]
-[ext_resource type="SpriteFrames" uid="uid://beip8s6jmao6v" path="res://Entities/Zach/Zach.tres" id="1_x076j"]
+[ext_resource type="Script" uid="uid://cnq51rbq3hwca" path="res://scripts/character.gd" id="1_lw8nl"]
+[ext_resource type="SpriteFrames" uid="uid://beip8s6jmao6v" path="res://entities/Zach/Zach.tres" id="1_x076j"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_onrkg"]
 radius = 0.102853

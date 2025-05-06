@@ -3,10 +3,17 @@ extends Node
 var selected_character = 0
 
 var characters = {
-	0: "res://Entities/Yuxiel/yuxiel.tscn",
-	1: "res://Entities/Zach/zach.tscn",
-	2: "res://Entities/Ciri/ciri.tscn",
-	3: "res://Entities/Brim/brim.tscn"
+	0: "res://entities/Yuxiel/yuxiel.tscn",
+	1: "res://entities/Zach/zach.tscn",
+	2: "res://entities/Ciri/ciri.tscn",
+	3: "res://entities/Brim/brim.tscn"
+}
+
+var char_names = {
+	0: "Yuxiel",
+	1: "Zach",
+	2: "Ciri",
+	3: "Brim"
 }
 
 func _ready():

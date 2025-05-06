@@ -1,8 +1,35 @@
-[gd_scene load_steps=11 format=3 uid="uid://byipuimt5c0e8"]
+[gd_scene load_steps=20 format=3 uid="uid://byipuimt5c0e8"]
 
-[ext_resource type="Script" uid="uid://56bnlwdn71ib" path="res://overworld.gd" id="1_v726c"]
-[ext_resource type="MeshLibrary" uid="uid://bje6ypahlruyk" path="res://Backgrounds/MeshLib.tres" id="2_v726c"]
-[ext_resource type="Texture2D" uid="uid://hnjfnw2qacoa" path="res://Backgrounds/Grass/grass_topcenter.png" id="3_nyb65"]
+[ext_resource type="Script" uid="uid://56bnlwdn71ib" path="res://scripts/overworld.gd" id="1_u2ss0"]
+[ext_resource type="Texture2D" uid="uid://cucnqcsomxvmq" path="res://entities/Yuxiel/Yuxiel.png" id="2_3gvrs"]
+[ext_resource type="MeshLibrary" uid="uid://bje6ypahlruyk" path="res://backgrounds/MeshLib.tres" id="2_356oe"]
+[ext_resource type="Texture2D" uid="uid://hnjfnw2qacoa" path="res://backgrounds/Grass/grass_topcenter.png" id="3_3gvrs"]
+[ext_resource type="Texture2D" uid="uid://btxmju2ictfkd" path="res://entities/Zach/Zach.png" id="3_fkyvp"]
+[ext_resource type="Texture2D" uid="uid://donoxxf1ncyke" path="res://entities/Ciri/Ciri.png" id="4_qjxaj"]
+[ext_resource type="Texture2D" uid="uid://b8qoar5vuwcbx" path="res://entities/Brim/Brim.png" id="5_e184d"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eab5i"]
+atlas = ExtResource("2_3gvrs")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fkyvp"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nesqq"]
+atlas = ExtResource("3_fkyvp")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lsky2"]
+atlas = ExtResource("4_qjxaj")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_255p0"]
+atlas = ExtResource("5_e184d")
+region = Rect2(0, 0, 32, 32)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_v726c"]
 bg_color = Color(0.6, 0.6, 0.6, 0.360784)
@@ -18,7 +45,7 @@ polygons = [PackedInt32Array(1, 0, 2), PackedInt32Array(2, 0, 3), PackedInt32Arr
 [sub_resource type="BoxShape3D" id="BoxShape3D_v726c"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_824ie"]
-albedo_texture = ExtResource("3_nyb65")
+albedo_texture = ExtResource("3_3gvrs")
 uv1_scale = Vector3(3, 2, 1)
 texture_filter = 0
 
@@ -26,7 +53,7 @@ texture_filter = 0
 material = SubResource("StandardMaterial3D_824ie")
 
 [node name="Overworld" type="Node3D"]
-script = ExtResource("1_v726c")
+script = ExtResource("1_u2ss0")
 
 [node name="CameraPivot" type="Node3D" parent="."]
 
@@ -39,16 +66,144 @@ size = 3.506
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.819152, -0.260398, 0.51106, 0, 0.891007, 0.453991, -0.573577, -0.371887, 0.72987, 0, 2.57, 0)
 
+[node name="DirectionalLight3D2" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.828119, 0.254485, -0.499456, 0.403472, 0.889147, -0.215932, 0.389139, -0.380334, -0.838998, 0, 2.57, 0)
+
 [node name="ScreenUI" type="Control" parent="."]
 layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="FPSLabel" type="Label" parent="ScreenUI"]
-layout_mode = 0
+layout_mode = 1
 offset_right = 40.0
 offset_bottom = 23.0
+theme_override_font_sizes/font_size = 60
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ScreenUI"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -130.0
+offset_top = -184.5
+offset_bottom = 184.5
+grow_horizontal = 0
+grow_vertical = 2
+metadata/_edit_group_ = true
+
+[node name="Character1" type="TextureRect" parent="ScreenUI/VBoxContainer"]
+layout_mode = 2
+mouse_filter = 2
+texture = SubResource("AtlasTexture_eab5i")
+expand_mode = 4
+stretch_mode = 5
+
+[node name="Button" type="Button" parent="ScreenUI/VBoxContainer/Character1"]
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+focus_mode = 0
+
+[node name="Panel" type="Panel" parent="ScreenUI/VBoxContainer/Character1"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_fkyvp")
+
+[node name="Character2" type="TextureRect" parent="ScreenUI/VBoxContainer"]
+layout_mode = 2
+mouse_filter = 2
+texture = SubResource("AtlasTexture_nesqq")
+expand_mode = 4
+stretch_mode = 5
+
+[node name="Button" type="Button" parent="ScreenUI/VBoxContainer/Character2"]
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+focus_mode = 0
+
+[node name="Panel" type="Panel" parent="ScreenUI/VBoxContainer/Character2"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_fkyvp")
+
+[node name="Character3" type="TextureRect" parent="ScreenUI/VBoxContainer"]
+layout_mode = 2
+mouse_filter = 2
+texture = SubResource("AtlasTexture_lsky2")
+expand_mode = 4
+stretch_mode = 5
+
+[node name="Button" type="Button" parent="ScreenUI/VBoxContainer/Character3"]
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+focus_mode = 0
+
+[node name="Panel" type="Panel" parent="ScreenUI/VBoxContainer/Character3"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_fkyvp")
+
+[node name="Character4" type="TextureRect" parent="ScreenUI/VBoxContainer"]
+layout_mode = 2
+mouse_filter = 2
+texture = SubResource("AtlasTexture_255p0")
+expand_mode = 4
+stretch_mode = 5
+
+[node name="Button" type="Button" parent="ScreenUI/VBoxContainer/Character4"]
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+focus_mode = 0
+
+[node name="Panel" type="Panel" parent="ScreenUI/VBoxContainer/Character4"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_fkyvp")
 
 [node name="Panel" type="Panel" parent="."]
 visible = false
@@ -114,7 +269,7 @@ navigation_mesh = SubResource("NavigationMesh_nyb65")
 
 [node name="GridMap" type="GridMap" parent="NavigationRegion3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.144279, -1.43115, 0)
-mesh_library = ExtResource("2_v726c")
+mesh_library = ExtResource("2_356oe")
 physics_material = SubResource("PhysicsMaterial_v726c")
 cell_size = Vector3(1, 1, 1)
 data = {

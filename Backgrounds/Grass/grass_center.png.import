@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dmc0s838ixb03"
-path.s3tc="res://.godot/imported/grass_center.png-d6df21f6a035ab44741a4af7ca828039.s3tc.ctex"
+path.s3tc="res://.godot/imported/grass_center.png-b3209303e2c25b7c07ac12476126352a.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://Backgrounds/Grass/grass_center.png"
-dest_files=["res://.godot/imported/grass_center.png-d6df21f6a035ab44741a4af7ca828039.s3tc.ctex"]
+source_file="res://backgrounds/Grass/grass_center.png"
+dest_files=["res://.godot/imported/grass_center.png-b3209303e2c25b7c07ac12476126352a.s3tc.ctex"]
 
 [params]
 

@@ -1,0 +1,288 @@
+[gd_scene load_steps=20 format=3 uid="uid://byipuimt5c0e8"]
+
+[ext_resource type="Script" uid="uid://56bnlwdn71ib" path="res://scripts/overworld.gd" id="1_u2ss0"]
+[ext_resource type="Texture2D" uid="uid://cucnqcsomxvmq" path="res://entities/Yuxiel/Yuxiel.png" id="2_3gvrs"]
+[ext_resource type="MeshLibrary" uid="uid://bje6ypahlruyk" path="res://backgrounds/MeshLib.tres" id="2_356oe"]
+[ext_resource type="Texture2D" uid="uid://hnjfnw2qacoa" path="res://backgrounds/Grass/grass_topcenter.png" id="3_3gvrs"]
+[ext_resource type="Texture2D" uid="uid://btxmju2ictfkd" path="res://entities/Zach/Zach.png" id="3_fkyvp"]
+[ext_resource type="Texture2D" uid="uid://donoxxf1ncyke" path="res://entities/Ciri/Ciri.png" id="4_qjxaj"]
+[ext_resource type="Texture2D" uid="uid://b8qoar5vuwcbx" path="res://entities/Brim/Brim.png" id="5_e184d"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eab5i"]
+atlas = ExtResource("2_3gvrs")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fkyvp"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nesqq"]
+atlas = ExtResource("3_fkyvp")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lsky2"]
+atlas = ExtResource("4_qjxaj")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_255p0"]
+atlas = ExtResource("5_e184d")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_v726c"]
+bg_color = Color(0.6, 0.6, 0.6, 0.360784)
+
+[sub_resource type="NavigationMesh" id="NavigationMesh_nyb65"]
+vertices = PackedVector3Array(-2.35572, 0.0688477, 0.5, -0.855721, 0.0688477, 0.5, -0.605721, 0.0688477, -1, -2.10572, 0.0688477, -2.25, 1.14428, 0.0688477, -1, 2.64428, 0.0688477, -2.25, 1.39428, 0.0688477, 0.75, 2.89428, 0.0688477, 0.75, -0.605721, 0.0688477, 1.25, -3.35572, 0.0688477, 0.75, -3.35572, 0.0688477, 3.5, 0.894279, 0.0688477, 1.25, 3.64428, 0.0688477, 3.5, 3.64428, 0.0688477, 0.75)
+polygons = [PackedInt32Array(1, 0, 2), PackedInt32Array(2, 0, 3), PackedInt32Array(2, 3, 4), PackedInt32Array(4, 3, 5), PackedInt32Array(6, 4, 7), PackedInt32Array(7, 4, 5), PackedInt32Array(1, 8, 0), PackedInt32Array(0, 8, 9), PackedInt32Array(9, 8, 10), PackedInt32Array(11, 6, 7), PackedInt32Array(11, 12, 8), PackedInt32Array(8, 12, 10), PackedInt32Array(7, 13, 11), PackedInt32Array(11, 13, 12)]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_v726c"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_nyb65"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_v726c"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_824ie"]
+albedo_texture = ExtResource("3_3gvrs")
+uv1_scale = Vector3(3, 2, 1)
+texture_filter = 0
+
+[sub_resource type="BoxMesh" id="BoxMesh_omswd"]
+material = SubResource("StandardMaterial3D_824ie")
+
+[node name="Overworld" type="Node3D"]
+script = ExtResource("1_u2ss0")
+
+[node name="CameraPivot" type="Node3D" parent="."]
+
+[node name="Camera3D" type="Camera3D" parent="CameraPivot"]
+transform = Transform3D(1, 0, 0, 0, 0.977401, 0.211393, 0, -0.211393, 0.977401, 0.0257568, 4, 10.5916)
+projection = 1
+current = true
+size = 3.506
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.819152, -0.260398, 0.51106, 0, 0.891007, 0.453991, -0.573577, -0.371887, 0.72987, 0, 2.57, 0)
+
+[node name="DirectionalLight3D2" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.828119, 0.254485, -0.499456, 0.403472, 0.889147, -0.215932, 0.389139, -0.380334, -0.838998, 0, 2.57, 0)
+
+[node name="ScreenUI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="FPSLabel" type="Label" parent="ScreenUI"]
+layout_mode = 1
+offset_right = 40.0
+offset_bottom = 23.0
+theme_override_font_sizes/font_size = 60
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ScreenUI"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -130.0
+offset_top = -184.5
+offset_bottom = 184.5
+grow_horizontal = 0
+grow_vertical = 2
+metadata/_edit_group_ = true
+
+[node name="Character1" type="TextureRect" parent="ScreenUI/VBoxContainer"]
+layout_mode = 2
+mouse_filter = 2
+texture = SubResource("AtlasTexture_eab5i")
+expand_mode = 4
+stretch_mode = 5
+
+[node name="Button" type="Button" parent="ScreenUI/VBoxContainer/Character1"]
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="ScreenUI/VBoxContainer/Character1"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_fkyvp")
+
+[node name="Character2" type="TextureRect" parent="ScreenUI/VBoxContainer"]
+layout_mode = 2
+mouse_filter = 2
+texture = SubResource("AtlasTexture_nesqq")
+expand_mode = 4
+stretch_mode = 5
+
+[node name="Button" type="Button" parent="ScreenUI/VBoxContainer/Character2"]
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="ScreenUI/VBoxContainer/Character2"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_fkyvp")
+
+[node name="Character3" type="TextureRect" parent="ScreenUI/VBoxContainer"]
+layout_mode = 2
+mouse_filter = 2
+texture = SubResource("AtlasTexture_lsky2")
+expand_mode = 4
+stretch_mode = 5
+
+[node name="Button" type="Button" parent="ScreenUI/VBoxContainer/Character3"]
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="ScreenUI/VBoxContainer/Character3"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_fkyvp")
+
+[node name="Character4" type="TextureRect" parent="ScreenUI/VBoxContainer"]
+layout_mode = 2
+mouse_filter = 2
+texture = SubResource("AtlasTexture_255p0")
+expand_mode = 4
+stretch_mode = 5
+
+[node name="Button" type="Button" parent="ScreenUI/VBoxContainer/Character4"]
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="ScreenUI/VBoxContainer/Character4"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_fkyvp")
+
+[node name="Panel" type="Panel" parent="."]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_v726c")
+
+[node name="EscMenu" type="CanvasLayer" parent="Panel"]
+visible = false
+follow_viewport_enabled = true
+
+[node name="Control" type="Control" parent="Panel/EscMenu"]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.0
+
+[node name="Game Paused" type="Label" parent="Panel/EscMenu/Control"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -264.0
+offset_top = -319.0
+offset_right = 265.0
+offset_bottom = -209.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 80
+text = "Game Paused"
+horizontal_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/EscMenu/Control"]
+layout_mode = 0
+offset_left = -139.0
+offset_top = -37.0
+offset_right = 139.0
+offset_bottom = 127.0
+metadata/_edit_group_ = true
+
+[node name="Resume" type="Button" parent="Panel/EscMenu/Control/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 52
+text = "Resume"
+
+[node name="Quit" type="Button" parent="Panel/EscMenu/Control/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 52
+text = "Quit Game"
+
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.144279, 1.43115, 0)
+navigation_mesh = SubResource("NavigationMesh_nyb65")
+
+[node name="GridMap" type="GridMap" parent="NavigationRegion3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.144279, -1.43115, 0)
+mesh_library = ExtResource("2_356oe")
+physics_material = SubResource("PhysicsMaterial_v726c")
+cell_size = Vector3(1, 1, 1)
+data = {
+"cells": PackedInt32Array(65533, 65533, 3, 65533, 65534, 3, 65533, 65535, 3, 65533, 0, 3, 65533, 1, 3, 65533, 2, 3, 65534, 65533, 3, 65534, 65534, 3, 65534, 65535, 3, 65534, 0, 3, 65534, 1, 3, 65534, 2, 3, 65535, 65533, 3, 65535, 65534, 3, 65535, 65535, 3, 65535, 0, 3, 65535, 1, 3, 65535, 2, 3, 0, 65533, 3, 0, 65534, 3, 0, 65535, 3, 0, 0, 3, 0, 1, 3, 0, 2, 3, 1, 65533, 3, 1, 65534, 3, 1, 65535, 3, 1, 0, 3, 1, 1, 3, 1, 2, 3, 2, 65533, 3, 2, 65534, 3, 2, 65535, 3, 2, 0, 3, 2, 1, 3, 2, 2, 3, 131069, 65532, 6, 131070, 65532, 6, 131071, 65532, 6, 65536, 65532, 6, 65537, 65532, 6, 65538, 65532, 6, 65539, 65533, 6, 65539, 65534, 6, 65539, 65535, 6, 131068, 65533, 6, 131068, 65534, 6, 131068, 65535, 6, 65533, 3, 6, 65534, 3, 6, 65535, 3, 6, 0, 3, 6, 1, 3, 6, 2, 3, 6, 3, 3, 7, 65532, 3, 8, 65532, 0, 786436, 65532, 1, 786436, 65532, 2, 786436, 3, 2, 786437, 3, 1, 786437, 3, 0, 786437)
+}
+metadata/_editor_floor_ = Vector3(0, 0, 0)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.144279, -0.221312, 0)
+physics_material_override = SubResource("PhysicsMaterial_nyb65")
+metadata/_edit_group_ = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/StaticBody3D"]
+shape = SubResource("BoxShape3D_v726c")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="NavigationRegion3D/StaticBody3D"]
+mesh = SubResource("BoxMesh_omswd")
+
+[connection signal="pressed" from="Panel/EscMenu/Control/VBoxContainer/Resume" to="." method="_on_resume_button_pressed"]
+[connection signal="pressed" from="Panel/EscMenu/Control/VBoxContainer/Quit" to="." method="_on_quit_button_pressed"]

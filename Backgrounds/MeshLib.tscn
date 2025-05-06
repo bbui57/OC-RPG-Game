@@ -1,13 +1,13 @@
 [gd_scene load_steps=37 format=3 uid="uid://b4pol8pilkme8"]
 
-[ext_resource type="Texture2D" uid="uid://bl2p8tojwsfbs" path="res://Backgrounds/Grass/grass_bottomcenter.png" id="1_su8ph"]
-[ext_resource type="Texture2D" uid="uid://cenpucdxb8bu0" path="res://Backgrounds/Grass/grass_bottomleft.png" id="2_16ho8"]
-[ext_resource type="Texture2D" uid="uid://ddkqiilvafpbq" path="res://Backgrounds/Grass/grass_bottomright.png" id="3_4dwti"]
-[ext_resource type="Texture2D" uid="uid://dmc0s838ixb03" path="res://Backgrounds/Grass/grass_center.png" id="4_6vacl"]
-[ext_resource type="Texture2D" uid="uid://cakxeiwvve7wr" path="res://Backgrounds/Grass/grass_right.png" id="5_vrewc"]
-[ext_resource type="Texture2D" uid="uid://hnjfnw2qacoa" path="res://Backgrounds/Grass/grass_topcenter.png" id="6_a5t0h"]
-[ext_resource type="Texture2D" uid="uid://bymap8jhv8sa2" path="res://Backgrounds/Grass/grass_topleft.png" id="7_o1tnt"]
-[ext_resource type="Texture2D" uid="uid://l11so4qjmrkn" path="res://Backgrounds/Grass/grass_topright.png" id="8_kibfx"]
+[ext_resource type="Texture2D" uid="uid://bl2p8tojwsfbs" path="res://backgrounds/Grass/grass_bottomcenter.png" id="1_su8ph"]
+[ext_resource type="Texture2D" uid="uid://cenpucdxb8bu0" path="res://backgrounds/Grass/grass_bottomleft.png" id="2_16ho8"]
+[ext_resource type="Texture2D" uid="uid://ddkqiilvafpbq" path="res://backgrounds/Grass/grass_bottomright.png" id="3_4dwti"]
+[ext_resource type="Texture2D" uid="uid://dmc0s838ixb03" path="res://backgrounds/Grass/grass_center.png" id="4_6vacl"]
+[ext_resource type="Texture2D" uid="uid://cakxeiwvve7wr" path="res://backgrounds/Grass/grass_right.png" id="5_vrewc"]
+[ext_resource type="Texture2D" uid="uid://hnjfnw2qacoa" path="res://backgrounds/Grass/grass_topcenter.png" id="6_a5t0h"]
+[ext_resource type="Texture2D" uid="uid://bymap8jhv8sa2" path="res://backgrounds/Grass/grass_topleft.png" id="7_o1tnt"]
+[ext_resource type="Texture2D" uid="uid://l11so4qjmrkn" path="res://backgrounds/Grass/grass_topright.png" id="8_kibfx"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1mxl7"]
 albedo_texture = ExtResource("1_su8ph")

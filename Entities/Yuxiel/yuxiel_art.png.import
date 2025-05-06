@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dlvtt6gga51hl"
-path="res://.godot/imported/yuxiel_art.png-a3d04746b387455c8f9b9efc17913dd1.ctex"
+path="res://.godot/imported/yuxiel_art.png-f38b5fdb8e22a70101b441626a8a6f83.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Entities/Yuxiel/yuxiel_art.png"
-dest_files=["res://.godot/imported/yuxiel_art.png-a3d04746b387455c8f9b9efc17913dd1.ctex"]
+source_file="res://entities/Yuxiel/yuxiel_art.png"
+dest_files=["res://.godot/imported/yuxiel_art.png-f38b5fdb8e22a70101b441626a8a6f83.ctex"]
 
 [params]
 

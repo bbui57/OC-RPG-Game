@@ -1,13 +1,13 @@
 [gd_scene load_steps=4 format=3 uid="uid://rgg76g8vprav"]
 
-[ext_resource type="Script" uid="uid://cnq51rbq3hwca" path="res://character.gd" id="1_j4377"]
-[ext_resource type="SpriteFrames" uid="uid://oy71x12np61e" path="res://Entities/Ciri/Ciri.tres" id="1_xws33"]
+[ext_resource type="Script" uid="uid://cnq51rbq3hwca" path="res://scripts/character.gd" id="1_j4377"]
+[ext_resource type="SpriteFrames" uid="uid://oy71x12np61e" path="res://entities/Ciri/Ciri.tres" id="1_xws33"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_onrkg"]
 radius = 0.0950031
 height = 0.279578
 
-[node name="C\'iri" type="CharacterBody3D"]
+[node name="Ciri" type="CharacterBody3D"]
 script = ExtResource("1_j4377")
 metadata/_edit_group_ = true
 
