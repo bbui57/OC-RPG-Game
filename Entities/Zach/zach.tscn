@@ -5,7 +5,7 @@
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_onrkg"]
 radius = 0.102853
-height = 0.279578
+height = 0.256919
 
 [node name="Zach" type="CharacterBody3D"]
 script = ExtResource("1_lw8nl")
@@ -20,3 +20,5 @@ sprite_frames = ExtResource("1_x076j")
 animation = &"move_back"
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
+
+[node name="RayCast3D" type="RayCast3D" parent="."]

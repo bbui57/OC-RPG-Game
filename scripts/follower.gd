@@ -16,12 +16,14 @@ func _ready():
 	anim = get_node("AnimatedSprite3D")
 	nav = get_node("NavigationAgent3D")
 	player = get_tree().get_first_node_in_group("player")  # Find the player automatically
+	
 	nav.path_desired_distance = 0.5
 	nav.target_desired_distance = 2.0
 	velocity.y = -gravity
 	
 
 func _physics_process(delta):
+	velocity = Vector3.ZERO
 	if anim == null:
 		anim = get_node_or_null("AnimatedSprite3D")
 	if nav == null:

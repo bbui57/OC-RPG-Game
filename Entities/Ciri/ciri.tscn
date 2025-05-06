@@ -5,7 +5,7 @@
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_onrkg"]
 radius = 0.0950031
-height = 0.279578
+height = 0.258891
 
 [node name="Ciri" type="CharacterBody3D"]
 script = ExtResource("1_j4377")
@@ -21,3 +21,5 @@ sprite_frames = ExtResource("1_xws33")
 animation = &"move_back"
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
+
+[node name="RayCast3D" type="RayCast3D" parent="."]

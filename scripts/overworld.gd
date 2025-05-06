@@ -4,6 +4,7 @@ extends Node3D
 @onready var fps_label = $ScreenUI/FPSLabel
 @onready var pause_menu = $Panel/EscMenu
 @onready var camera_pivot = $CameraPivot
+@onready var gridmap = $NavigationRegion3D/GridMap
 
 # Character variables
 var player_scene = load(Global.characters[Global.selected_character]) # Load the player scene
@@ -18,15 +19,19 @@ var rotation_y = 0
 var rotation_x = 0
 var is_dragging = false
 
+# Map Generation variables
+const dir = [Vector3.RIGHT, Vector3.LEFT, Vector3.FORWARD, Vector3.BACK]
+var grid_size = 15
+var grid_steps = 50
 
 func _ready():
-	# Instantiate the characters
+	generate_map()
 	spawn_characters()
 	character = get_tree().get_first_node_in_group("player")
 	
 	#Initialize Player and Camera Positioning
 	camera_pivot.position = Vector3(0, 2, 5)
-	character.position = Vector3(0, 2, 0)
+	character.position = Vector3(0, 1.5, 0)
 	camera.look_at(character.position)
 	
 	#Show mouse
@@ -44,6 +49,9 @@ func _physics_process(delta):
 	var camera_forward = camera_pivot.global_transform.basis.z
 	var target_rotation = atan2(camera_forward.x, camera_forward.z)
 	character.rotation.y = lerp_angle(character.rotation.y, target_rotation, 0.1)
+	
+	for follower in get_tree().get_nodes_in_group("follower"):
+		follower.rotation.y = lerp_angle(follower.rotation.y, target_rotation, 0.1)
 	
 	camera.look_at(character.position)
 	
@@ -84,6 +92,32 @@ func toggle_pause():
 	else:
 		_on_resume_button_pressed()
 
+func generate_map():
+	# Create map (procedural generation)
+	gridmap.set_cell_item(Vector3.ZERO, 3, 0) #Origin
+	gridmap.set_cell_item(Vector3(-1,0,-1),3,0)
+	randomize()
+	var curr_pos = Vector3.ZERO
+	var curr_dir = Vector3.RIGHT
+	var last_dir = curr_dir * -1
+	
+	#Pick next tile location
+	for i in range(0, grid_steps):
+		var temp_dir = dir.duplicate()
+		temp_dir.shuffle()
+		var d = temp_dir.pop_front()
+		
+		while (abs(curr_pos.x + d.x) > grid_size or abs(curr_pos.z + d.z) > grid_size or d == last_dir * -1):
+			temp_dir.shuffle()
+			d = temp_dir.pop_front()
+			
+		curr_pos += d
+		last_dir = d
+		
+		#Place tile
+		gridmap.set_cell_item(curr_pos, 3, 0)
+	$NavigationRegion3D.bake_navigation_mesh()
+
 func spawn_characters():
 	var player_instance = load(Global.characters[Global.selected_character]).instantiate()
 	player_instance.set_script(preload("res://scripts/character.gd"))
@@ -101,11 +135,27 @@ func spawn_characters():
 		
 		var follower = load(Global.characters[i]).instantiate()
 		follower.set_script(preload("res://scripts/follower.gd"))
-		follower.position = Vector3(randf_range(-2, 2), 1, randf_range(-2, 2))
+		follower.position = valid_spawn_position()
+			
 		follower.scale = Vector3(4, 4, 4)
 		
 		follower.add_to_group("follower")
 		add_child(follower)
+
+func valid_spawn_position():
+	gridmap = $NavigationRegion3D/GridMap
+	var spawn_position = Vector3(randf_range(-2, 2), 1.5, randf_range(-2, 2))
+	for attempt in range(100):
+		var random_x = randf_range(-2, 2)
+		var random_z = randf_range(-2, 2)
+		spawn_position = Vector3(random_x, 1.5, random_x)
+		
+		var grid_position = gridmap.local_to_map(spawn_position)
+		var cell_item = gridmap.get_cell_item(grid_position)
+		
+		if cell_item != -1:
+			break
+	return spawn_position
 
 func set_player(player):
 	player.add_to_group("player")

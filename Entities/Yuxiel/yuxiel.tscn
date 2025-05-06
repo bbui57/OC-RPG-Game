@@ -4,8 +4,8 @@
 [ext_resource type="SpriteFrames" uid="uid://d3pxb5xhnoiux" path="res://entities/Yuxiel/Yuxiel.tres" id="1_owtnj"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_onrkg"]
-radius = 0.0950031
-height = 0.279578
+radius = 0.0970054
+height = 0.258902
 
 [node name="Yuxiel" type="CharacterBody3D"]
 script = ExtResource("1_4qq2g")
@@ -20,3 +20,5 @@ sprite_frames = ExtResource("1_owtnj")
 animation = &"move_back"
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
+
+[node name="RayCast3D" type="RayCast3D" parent="."]
