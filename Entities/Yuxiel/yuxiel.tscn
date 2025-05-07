@@ -1,11 +1,31 @@
-[gd_scene load_steps=4 format=3 uid="uid://btvpnwax48eak"]
+[gd_scene load_steps=10 format=3 uid="uid://btvpnwax48eak"]
 
 [ext_resource type="Script" uid="uid://cnq51rbq3hwca" path="res://scripts/character.gd" id="1_4qq2g"]
 [ext_resource type="SpriteFrames" uid="uid://d3pxb5xhnoiux" path="res://entities/Yuxiel/Yuxiel.tres" id="1_owtnj"]
+[ext_resource type="Texture2D" uid="uid://b6ktt8ju2ivlm" path="res://assets/thought_bubble.png" id="3_hffa4"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_onrkg"]
-radius = 0.0970054
+radius = 0.0795507
 height = 0.258902
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_hffa4"]
+viewport_path = NodePath("AnimatedSprite3D/UI/SubViewport")
+
+[sub_resource type="GDScript" id="GDScript_j73us"]
+script/source = "extends Sprite3D
+"
+
+[sub_resource type="SystemFont" id="SystemFont_lchcb"]
+font_names = PackedStringArray("Ninja Naruto")
+
+[sub_resource type="LabelSettings" id="LabelSettings_wo4vg"]
+font = SubResource("SystemFont_lchcb")
+font_size = 27
+outline_size = 5
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_olfil"]
+size = Vector3(0.25, 0.26, 0.25)
 
 [node name="Yuxiel" type="CharacterBody3D"]
 script = ExtResource("1_4qq2g")
@@ -17,8 +37,80 @@ shape = SubResource("CapsuleShape3D_onrkg")
 [node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="."]
 texture_filter = 0
 sprite_frames = ExtResource("1_owtnj")
-animation = &"move_back"
+animation = &"stand_front"
+
+[node name="UI" type="Sprite3D" parent="AnimatedSprite3D"]
+transform = Transform3D(0.075, 0, 0, 0, 0.044, 0, 0, 0, 0.088, 0.206736, 0.142728, 0)
+visible = false
+billboard = 2
+texture = SubResource("ViewportTexture_hffa4")
+script = SubResource("GDScript_j73us")
+
+[node name="SubViewport" type="SubViewport" parent="AnimatedSprite3D/UI"]
+transparent_bg = true
+handle_input_locally = false
+
+[node name="Prompt" type="Control" parent="AnimatedSprite3D/UI/SubViewport"]
+custom_minimum_size = Vector2(0, -200)
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="AnimatedSprite3D/UI/SubViewport/Prompt"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_hffa4")
+stretch_mode = 4
+
+[node name="Label" type="Label" parent="AnimatedSprite3D/UI/SubViewport/Prompt"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -78.365
+offset_top = -31.275
+offset_right = 119.635
+offset_bottom = -0.274994
+grow_horizontal = 2
+grow_vertical = 2
+text = "Mmm....chicken"
+label_settings = SubResource("LabelSettings_wo4vg")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="EPrompt" type="Label" parent="AnimatedSprite3D/UI/SubViewport/Prompt"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 12.045
+offset_top = 31.415
+offset_right = 193.44
+offset_bottom = 62.415
+grow_horizontal = 2
+grow_vertical = 2
+text = "[E]"
+label_settings = SubResource("LabelSettings_wo4vg")
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
 
 [node name="RayCast3D" type="RayCast3D" parent="."]
+
+[node name="Area3D" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("BoxShape3D_olfil")

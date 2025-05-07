@@ -7,9 +7,14 @@ extends CharacterBody3D
 @onready var anim = $AnimatedSprite3D
 
 var facing = "front"
+var nearby_characters = []
 
 func _ready():
 	anim = get_node("AnimatedSprite3D")
+	nearby_characters = []
+	$Area3D.connect("body_entered", Callable(self, "_on_Area3D_body_entered"))
+	$Area3D.connect("body_exited", Callable(self, "_on_Area3D_body_exited"))
+	set_process(true)
 
 func _physics_process(delta):
 	
@@ -57,19 +62,35 @@ func _physics_process(delta):
 		if anim.is_playing():
 			anim.play("stand_" + facing)
 	
-	# Boundary Setting
-#	var grid_size: int = 4  # Set the grid dimensions
-#	var cell_size: float = 1.0  # Define individual cell size
-#	var min_x = -grid_size * cell_size
-#	var max_x = grid_size * cell_size
-#	var min_z = -grid_size * cell_size
-#	var max_z = grid_size * cell_size
-#	var target_position = position + Vector3(velocity.x * delta, 0, velocity.z * delta)
-#	# Constrain movement to grid boundaries
-#	target_position.x = clamp(target_position.x, min_x, max_x)
-#	target_position.z = clamp(target_position.z, min_z, max_z)
-#	position = target_position  # Apply restricted movement
-
 	if position.y < -1:
 		position.y = 3
 	move_and_slide()
+	
+	var closest = get_closest_character()
+	for character in nearby_characters:
+		var prompt = character.get_node("AnimatedSprite3D/UI")
+		if character == closest:
+			prompt.visible = true
+		else:
+			prompt.visible = false
+
+func _on_Area3D_body_entered(body):
+	if body.is_in_group("follower"):
+		nearby_characters.append(body)
+
+func _on_Area3D_body_exited(body):
+	if body in nearby_characters:
+		nearby_characters.erase(body)
+
+func get_closest_character():
+	var player_position = global_transform.origin
+	var closest_character = null
+	var closest_distance = INF
+	
+	for character in nearby_characters:
+		var distance = player_position.distance_to(character.global_transform.origin)
+		if distance < closest_distance:
+			closest_distance = distance
+			closest_character = character
+			
+	return closest_character

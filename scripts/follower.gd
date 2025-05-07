@@ -4,6 +4,7 @@ extends CharacterBody3D  # Ensure it’s a character with movement capability
 
 @onready var anim = $AnimatedSprite3D
 @onready var nav = $NavigationAgent3D
+@onready var prompt = anim.get_node("UI")
 
 var player  # Reference to the selected character
 var speed = 100
@@ -11,6 +12,8 @@ var gravity: float = 9.8
 var facing = "front"
 var update_timer = 0.0
 var update_interval = 0.5
+var orbit_radius = 0.17
+var bubble_offset = Vector3(0.7, 0.5, 0)
 
 func _ready():
 	anim = get_node("AnimatedSprite3D")
@@ -20,7 +23,6 @@ func _ready():
 	nav.path_desired_distance = 0.5
 	nav.target_desired_distance = 2.0
 	velocity.y = -gravity
-	
 
 func _physics_process(delta):
 	velocity = Vector3.ZERO
@@ -60,21 +62,21 @@ func _physics_process(delta):
 			anim.play("move_" + facing)
 		else:
 			anim.play("stand_" + facing)
+			
+		# Thought Bubble
+		var camera_direction = (player.global_transform.origin - global_transform.origin).normalized()
+		var angle = atan2(camera_direction.x, camera_direction.z)
+		var offset_x = cos(angle) * orbit_radius
+		var offset_z = sin(angle) * orbit_radius
+		anim.get_node("UI").global_transform.origin = global_transform.origin + Vector3(offset_x, 0.15, offset_z) + bubble_offset
 				
-	# Boundary Setting
-	var grid_size: int = 4  # Set the grid dimensions
-	var cell_size: float = 1.0  # Define individual cell size
-	var min_x = -grid_size * cell_size
-	var max_x = grid_size * cell_size
-	var min_z = -grid_size * cell_size
-	var max_z = grid_size * cell_size
-	
-	var target_position = position + Vector3(velocity.x * delta, velocity.y * delta, velocity.z * delta)
-
-	# Constrain movement to grid boundaries
-	target_position.x = clamp(target_position.x, min_x, max_x)
-	target_position.z = clamp(target_position.z, min_z, max_z)
-
-	position = target_position  # Apply restricted movement
-
 	move_and_slide()
+
+func _input(event):
+	if event.is_action_pressed("interact") and prompt.visible:
+		get_tree().get_root().find_child("HUD", true, false).visible = false
+		open_dialogue()
+
+func open_dialogue():
+	var dialogue_ui = get_tree().get_root().find_child("Dialogue", true, false)
+	dialogue_ui.visible = true

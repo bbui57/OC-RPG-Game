@@ -1,0 +1,16 @@
+[remap]
+
+importer="dialogue_manager"
+importer_version=15
+type="Resource"
+uid="uid://bsy4lrm42xlcn"
+path="res://.godot/imported/zach.dialogue-752765fad8fef8b11c6c6514c0391e86.tres"
+
+[deps]
+
+source_file="res://dialogue/zach.dialogue"
+dest_files=["res://.godot/imported/zach.dialogue-752765fad8fef8b11c6c6514c0391e86.tres"]
+
+[params]
+
+defaults=true

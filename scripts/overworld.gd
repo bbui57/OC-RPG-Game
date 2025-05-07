@@ -1,8 +1,8 @@
 extends Node3D
 
 @onready var camera = $CameraPivot/Camera3D
-@onready var fps_label = $ScreenUI/FPSLabel
-@onready var pause_menu = $Panel/EscMenu
+@onready var fps_label = $HUD/FPSLabel
+@onready var pause_menu = $EscMenu
 @onready var camera_pivot = $CameraPivot
 @onready var gridmap = $NavigationRegion3D/GridMap
 
@@ -37,10 +37,10 @@ func _ready():
 	#Show mouse
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	
-	$ScreenUI/VBoxContainer/Character1/Button.connect("pressed", swap_character.bind(0))
-	$ScreenUI/VBoxContainer/Character2/Button.connect("pressed", swap_character.bind(1))
-	$ScreenUI/VBoxContainer/Character3/Button.connect("pressed", swap_character.bind(2))
-	$ScreenUI/VBoxContainer/Character4/Button.connect("pressed", swap_character.bind(3))
+	$HUD/VBoxContainer/Character1/Button.connect("pressed", swap_character.bind(0))
+	$HUD/VBoxContainer/Character2/Button.connect("pressed", swap_character.bind(1))
+	$HUD/VBoxContainer/Character3/Button.connect("pressed", swap_character.bind(2))
+	$HUD/VBoxContainer/Character4/Button.connect("pressed", swap_character.bind(3))
 
 func _physics_process(delta):
 	var target_position = character.position + Vector3(0, 2, 5)
@@ -88,7 +88,6 @@ func toggle_pause():
 	if Engine.time_scale == 1:
 		Engine.time_scale = 0
 		pause_menu.visible = true
-		$Panel.visible = true
 	else:
 		_on_resume_button_pressed()
 
@@ -126,7 +125,7 @@ func spawn_characters():
 	player_instance.scale = Vector3(4, 4, 4)
 	add_child(player_instance)  # ✅ Add player first!
 	
-	var prev_panel = get_node("ScreenUI/VBoxContainer/Character" + str(Global.selected_character + 1) + "/Panel")
+	var prev_panel = get_node("HUD/VBoxContainer/Character" + str(Global.selected_character + 1) + "/Panel")
 	prev_panel.visible = true
 
 	for i in range(len(Global.characters)):
@@ -170,12 +169,12 @@ func swap_character(new_index):
 	
 	var prev_char_instance = get_node(Global.char_names[Global.selected_character])
 	prev_char_instance.set_script(preload("res://scripts/follower.gd"))
-	var prev_panel = get_node("ScreenUI/VBoxContainer/Character" + str(Global.selected_character + 1) + "/Panel")
+	var prev_panel = get_node("HUD/VBoxContainer/Character" + str(Global.selected_character + 1) + "/Panel")
 	prev_panel.visible = false  
 	
 	var new_char_instance = get_node(Global.char_names[new_index])
 	new_char_instance.set_script(preload("res://scripts/character.gd"))
-	var new_panel = get_node("ScreenUI/VBoxContainer/Character" + str(new_index + 1) + "/Panel")
+	var new_panel = get_node("HUD/VBoxContainer/Character" + str(new_index + 1) + "/Panel")
 	new_panel.visible = true
 	
 	set_player(new_char_instance)
