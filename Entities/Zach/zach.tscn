@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://nnyssdhmxnu6"]
+[gd_scene load_steps=9 format=3 uid="uid://nnyssdhmxnu6"]
 
 [ext_resource type="Script" uid="uid://cnq51rbq3hwca" path="res://scripts/character.gd" id="1_lw8nl"]
 [ext_resource type="SpriteFrames" uid="uid://beip8s6jmao6v" path="res://entities/Zach/Zach.tres" id="1_x076j"]
@@ -10,10 +10,6 @@ height = 0.256919
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_x37s7"]
 viewport_path = NodePath("AnimatedSprite3D/UI/SubViewport")
-
-[sub_resource type="GDScript" id="GDScript_opsi8"]
-script/source = "extends Sprite3D
-"
 
 [sub_resource type="SystemFont" id="SystemFont_h8l2y"]
 font_names = PackedStringArray("Ninja Naruto")
@@ -28,6 +24,7 @@ outline_color = Color(0, 0, 0, 1)
 size = Vector3(0.25, 0.26, 0.25)
 
 [node name="Zach" type="CharacterBody3D"]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 0, 0, 0)
 script = ExtResource("1_lw8nl")
 metadata/_edit_group_ = true
 
@@ -37,14 +34,13 @@ shape = SubResource("CapsuleShape3D_onrkg")
 [node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="."]
 texture_filter = 0
 sprite_frames = ExtResource("1_x076j")
-animation = &"stand_front"
+animation = &"move_back"
 
 [node name="UI" type="Sprite3D" parent="AnimatedSprite3D"]
 transform = Transform3D(0.075, 0, 0, 0, 0.044, 0, 0, 0, 0.088, 0.206736, 0.142728, 0)
 visible = false
 billboard = 2
 texture = SubResource("ViewportTexture_x37s7")
-script = SubResource("GDScript_opsi8")
 
 [node name="SubViewport" type="SubViewport" parent="AnimatedSprite3D/UI"]
 transparent_bg = true
@@ -107,6 +103,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
+path_postprocessing = 1
 
 [node name="RayCast3D" type="RayCast3D" parent="."]
 

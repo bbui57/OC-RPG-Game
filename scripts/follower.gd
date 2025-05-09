@@ -16,8 +16,6 @@ var orbit_radius = 0.17
 var bubble_offset = Vector3(0.7, 0.5, 0)
 
 func _ready():
-	anim = get_node("AnimatedSprite3D")
-	nav = get_node("NavigationAgent3D")
 	player = get_tree().get_first_node_in_group("player")  # Find the player automatically
 	
 	nav.path_desired_distance = 0.5
@@ -64,11 +62,11 @@ func _physics_process(delta):
 			anim.play("stand_" + facing)
 			
 		# Thought Bubble
-		var camera_direction = (player.global_transform.origin - global_transform.origin).normalized()
-		var angle = atan2(camera_direction.x, camera_direction.z)
-		var offset_x = cos(angle) * orbit_radius
-		var offset_z = sin(angle) * orbit_radius
-		anim.get_node("UI").global_transform.origin = global_transform.origin + Vector3(offset_x, 0.15, offset_z) + bubble_offset
+		var camera = get_tree().get_root().find_child("CameraPivot", true, false)
+		var camera_right = camera.global_transform.basis.x
+		var camera_up = camera.global_transform.basis.y
+		var offset = (camera_right * 0.2) + (camera_up * 0.15)
+		anim.get_node("UI").global_transform.origin = global_transform.origin + offset + bubble_offset
 				
 	move_and_slide()
 

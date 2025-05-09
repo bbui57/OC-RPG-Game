@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://btvpnwax48eak"]
+[gd_scene load_steps=9 format=3 uid="uid://btvpnwax48eak"]
 
 [ext_resource type="Script" uid="uid://cnq51rbq3hwca" path="res://scripts/character.gd" id="1_4qq2g"]
 [ext_resource type="SpriteFrames" uid="uid://d3pxb5xhnoiux" path="res://entities/Yuxiel/Yuxiel.tres" id="1_owtnj"]
@@ -10,10 +10,6 @@ height = 0.258902
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_hffa4"]
 viewport_path = NodePath("AnimatedSprite3D/UI/SubViewport")
-
-[sub_resource type="GDScript" id="GDScript_j73us"]
-script/source = "extends Sprite3D
-"
 
 [sub_resource type="SystemFont" id="SystemFont_lchcb"]
 font_names = PackedStringArray("Ninja Naruto")
@@ -28,6 +24,7 @@ outline_color = Color(0, 0, 0, 1)
 size = Vector3(0.25, 0.26, 0.25)
 
 [node name="Yuxiel" type="CharacterBody3D"]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 0, 0, 0)
 script = ExtResource("1_4qq2g")
 metadata/_edit_group_ = true
 
@@ -44,7 +41,6 @@ transform = Transform3D(0.075, 0, 0, 0, 0.044, 0, 0, 0, 0.088, 0.206736, 0.14272
 visible = false
 billboard = 2
 texture = SubResource("ViewportTexture_hffa4")
-script = SubResource("GDScript_j73us")
 
 [node name="SubViewport" type="SubViewport" parent="AnimatedSprite3D/UI"]
 transparent_bg = true
@@ -107,6 +103,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
+path_postprocessing = 1
 
 [node name="RayCast3D" type="RayCast3D" parent="."]
 
@@ -114,3 +111,13 @@ vertical_alignment = 1
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
 shape = SubResource("BoxShape3D_olfil")
+
+[node name="CameraPivot" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.107483, 0)
+
+[node name="SpringArm3D" type="SpringArm3D" parent="CameraPivot"]
+
+[node name="Camera3D" type="Camera3D" parent="CameraPivot/SpringArm3D"]
+transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, 0, 0.213192)
+projection = 1
+size = 4.306

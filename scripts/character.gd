@@ -5,6 +5,8 @@ extends CharacterBody3D
 @export var jump: float = 20.0
 
 @onready var anim = $AnimatedSprite3D
+@onready var camera = $CameraPivot/SpringArm3D/Camera3D
+@onready var camera_pivot = $CameraPivot
 
 var facing = "front"
 var nearby_characters = []
@@ -14,7 +16,7 @@ func _ready():
 	nearby_characters = []
 	$Area3D.connect("body_entered", Callable(self, "_on_Area3D_body_entered"))
 	$Area3D.connect("body_exited", Callable(self, "_on_Area3D_body_exited"))
-	set_process(true)
+	camera.current = true
 
 func _physics_process(delta):
 	
@@ -26,7 +28,6 @@ func _physics_process(delta):
 		velocity.y -= gravity * delta
 	if Engine.time_scale == 0:
 		return
-
 	
 	if Input.is_action_pressed("move_right"):
 		velocity.x = 1
@@ -67,12 +68,14 @@ func _physics_process(delta):
 	move_and_slide()
 	
 	var closest = get_closest_character()
-	for character in nearby_characters:
-		var prompt = character.get_node("AnimatedSprite3D/UI")
-		if character == closest:
-			prompt.visible = true
-		else:
+	if nearby_characters.is_empty():
+		for character in get_tree().get_nodes_in_group("follower"):
+			var prompt = character.get_node("AnimatedSprite3D/UI")
 			prompt.visible = false
+	else:
+		for character in nearby_characters:
+			var prompt = character.get_node("AnimatedSprite3D/UI")
+			prompt.visible = (character == closest) and closest != null
 
 func _on_Area3D_body_entered(body):
 	if body.is_in_group("follower"):
