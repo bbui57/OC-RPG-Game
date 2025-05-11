@@ -5,8 +5,6 @@ extends CharacterBody3D
 @export var jump: float = 20.0
 
 @onready var anim = $AnimatedSprite3D
-@onready var camera = $CameraPivot/SpringArm3D/Camera3D
-@onready var camera_pivot = $CameraPivot
 
 var facing = "front"
 var nearby_characters = []
@@ -16,7 +14,6 @@ func _ready():
 	nearby_characters = []
 	$Area3D.connect("body_entered", Callable(self, "_on_Area3D_body_entered"))
 	$Area3D.connect("body_exited", Callable(self, "_on_Area3D_body_exited"))
-	camera.current = true
 
 func _physics_process(delta):
 	

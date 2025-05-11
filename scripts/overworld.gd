@@ -1,5 +1,6 @@
 extends Node3D
 
+@export_range(2.5, 10.5, 0.1) var camera_zoom: float = 9.3
 
 @onready var fps_label = $HUD/FPSLabel
 @onready var pause_menu = $EscMenu
@@ -9,6 +10,7 @@ extends Node3D
 var player_scene = load(Global.characters[Global.selected_character]) # Load the player scene
 var player
 var camera_pivot
+var camera
 
 # Camera Movement variables
 var sensitivity = 0.2
@@ -24,9 +26,9 @@ var grid_steps = 1000
 func _ready():
 	generate_map()
 	spawn_characters()
-	player = get_tree().get_first_node_in_group("player")
 	
-	#Show mouse
+	camera.size = camera_zoom
+	
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	
 	$HUD/VBoxContainer/Character1/Button.connect("pressed", swap_character.bind(0))
@@ -37,7 +39,7 @@ func _ready():
 func _physics_process(delta):
 	
 	fps_label.text = "FPS: " + str(Engine.get_frames_per_second())
-	
+
 func _input(event):
 	if event.is_action_pressed("ui_cancel"): # Escape key
 		toggle_pause()
@@ -49,7 +51,13 @@ func _input(event):
 		swap_character(2)
 	if event.is_action_pressed("swap_char_4"):
 		swap_character(3)
-			
+	if event is InputEventMouseButton:
+		if event.button_index == MOUSE_BUTTON_WHEEL_DOWN:
+			camera_zoom += 0.1
+		if event.button_index == MOUSE_BUTTON_WHEEL_UP:
+			camera_zoom -= 0.1
+		camera_zoom = clamp(camera_zoom, 2.5, 10.5)
+		camera.size = camera_zoom
 
 func toggle_pause():
 	if Engine.time_scale == 1:
@@ -125,11 +133,14 @@ func set_player(character):
 	character.remove_from_group("follower")
 	for follower in get_tree().get_nodes_in_group("player"):
 		if follower != character:
+			follower.get_node("CameraPivot/SpringArm3D/Camera3D").current = false
 			follower.remove_from_group("player")
 			follower.add_to_group("follower")
 	player = character
 	camera_pivot = player.get_node("CameraPivot")
-		
+	camera = camera_pivot.get_node("SpringArm3D/Camera3D")
+	camera.current = true
+
 func swap_character(new_index):
 	
 	var prev_char_instance = get_node(Global.char_names[Global.selected_character])

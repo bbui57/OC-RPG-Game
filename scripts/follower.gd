@@ -60,13 +60,6 @@ func _physics_process(delta):
 			anim.play("move_" + facing)
 		else:
 			anim.play("stand_" + facing)
-			
-		# Thought Bubble
-		var camera = get_tree().get_root().find_child("CameraPivot", true, false)
-		var camera_right = camera.global_transform.basis.x
-		var camera_up = camera.global_transform.basis.y
-		var offset = (camera_right * 0.2) + (camera_up * 0.15)
-		anim.get_node("UI").global_transform.origin = global_transform.origin + offset + bubble_offset
 				
 	move_and_slide()
 

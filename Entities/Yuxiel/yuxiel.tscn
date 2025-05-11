@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://btvpnwax48eak"]
+[gd_scene load_steps=10 format=3 uid="uid://btvpnwax48eak"]
 
 [ext_resource type="Script" uid="uid://cnq51rbq3hwca" path="res://scripts/character.gd" id="1_4qq2g"]
 [ext_resource type="SpriteFrames" uid="uid://d3pxb5xhnoiux" path="res://entities/Yuxiel/Yuxiel.tres" id="1_owtnj"]
@@ -23,6 +23,8 @@ outline_color = Color(0, 0, 0, 1)
 [sub_resource type="BoxShape3D" id="BoxShape3D_olfil"]
 size = Vector3(0.25, 0.26, 0.25)
 
+[sub_resource type="SeparationRayShape3D" id="SeparationRayShape3D_hffa4"]
+
 [node name="Yuxiel" type="CharacterBody3D"]
 transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 0, 0, 0)
 script = ExtResource("1_4qq2g")
@@ -32,9 +34,10 @@ metadata/_edit_group_ = true
 shape = SubResource("CapsuleShape3D_onrkg")
 
 [node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="."]
+billboard = 2
 texture_filter = 0
 sprite_frames = ExtResource("1_owtnj")
-animation = &"stand_front"
+animation = &"move_right"
 
 [node name="UI" type="Sprite3D" parent="AnimatedSprite3D"]
 transform = Transform3D(0.075, 0, 0, 0, 0.044, 0, 0, 0, 0.088, 0.206736, 0.142728, 0)
@@ -113,11 +116,14 @@ path_postprocessing = 1
 shape = SubResource("BoxShape3D_olfil")
 
 [node name="CameraPivot" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.107483, 0)
+transform = Transform3D(1, 0, 0, 0, 0.950386, 0.311075, 0, -0.311075, 0.950386, 0, 0.1772, 0)
 
 [node name="SpringArm3D" type="SpringArm3D" parent="CameraPivot"]
+shape = SubResource("SeparationRayShape3D_hffa4")
+spring_length = 3.0
 
 [node name="Camera3D" type="Camera3D" parent="CameraPivot/SpringArm3D"]
-transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, 0, 0.213192)
+transform = Transform3D(0.25, 0, 0, 0, 0.249662, 0.0129881, 0, -0.0129881, 0.249662, 0, 0.0512999, 0.229983)
 projection = 1
-size = 4.306
+size = 9.265
+near = 0.001
