@@ -36,4 +36,5 @@ func _update_preview():
 	$Panel/StartGame.visible = true
 	
 func _on_start_button_pressed():
-	get_tree().change_scene_to_file("res://scenes/overworld.tscn")
+	SceneManager.change_scene("res://scenes/overworld.tscn")
+	UI.get_node("HUD").visible = true

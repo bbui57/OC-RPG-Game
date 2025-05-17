@@ -3,10 +3,10 @@ extends Node
 var selected_character = 0
 
 var characters = {
-	0: "res://entities/Yuxiel/yuxiel.tscn",
-	1: "res://entities/Zach/zach.tscn",
-	2: "res://entities/Ciri/ciri.tscn",
-	3: "res://entities/Brim/brim.tscn"
+	0: "res://scenes/yuxiel.tscn",
+	1: "res://scenes/zach.tscn",
+	2: "res://scenes/ciri.tscn",
+	3: "res://scenes/brim.tscn"
 }
 
 var char_names = {

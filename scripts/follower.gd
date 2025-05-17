@@ -1,72 +1,71 @@
-extends CharacterBody3D  # Ensure it’s a character with movement capability
+extends CharacterBody2D  # Ensure it’s a character with movement capability
 
 @export var stop_distance: float = 1.0  # Prevent overcrowding
 
-@onready var anim = $AnimatedSprite3D
-@onready var nav = $NavigationAgent3D
-@onready var prompt = anim.get_node("UI")
+@onready var anim = $AnimatedSprite2D
 
 var player  # Reference to the selected character
-var speed = 100
-var gravity: float = 9.8
+var speed = 200
 var facing = "front"
 var update_timer = 0.0
 var update_interval = 0.5
-var orbit_radius = 0.17
-var bubble_offset = Vector3(0.7, 0.5, 0)
+var follower_index
 
 func _ready():
 	player = get_tree().get_first_node_in_group("player")  # Find the player automatically
-	
-	nav.path_desired_distance = 0.5
-	nav.target_desired_distance = 2.0
-	velocity.y = -gravity
+	set_collision_layer(3)
+	set_collision_mask(1)
+	collision_layer &= ~2
+	update_index()
 
 func _physics_process(delta):
-	velocity = Vector3.ZERO
+	
+	z_index = max(position.y * 1.5, 1)
+	
+	velocity = Vector2.ZERO
+	
 	if anim == null:
-		anim = get_node_or_null("AnimatedSprite3D")
-	if nav == null:
-		nav = get_node_or_null("NavigationAgent3D")
-		
-	if not is_on_floor():
-			velocity.y -= gravity * speed * delta
-	if player:
-		# Controls
-		if not is_on_floor():
-			velocity.y -= gravity * speed * delta
-		
-		if Engine.time_scale == 0:
-			return
-			
-		update_timer += delta
-		if update_timer >= update_interval:
-			update_timer = 0.0
-			nav.set_target_position(player.position)
-		
-		if nav.is_navigation_finished():
-			velocity = Vector3.ZERO
-		else:
-			var next_point = nav.get_next_path_position()
-			var direction = (next_point - position).normalized()
-			velocity = direction * speed * delta
-		
-		if velocity.length() > 0:
-			if abs(velocity.x) > abs(velocity.z):
-				facing = "right" if velocity.x > 0 else "left"
-			else:
-				facing = "front" if velocity.z > 0 else "back"
-			
-			anim.play("move_" + facing)
-		else:
-			anim.play("stand_" + facing)
-				
+		anim = get_node_or_null("AnimatedSprite2D")
+	if Engine.time_scale == 0:
+		return
+	
+	if player.velocity.length() > 0:
+		update_position()
+	
+	handle_animation(velocity)
+	
 	move_and_slide()
 
 func _input(event):
-	if event.is_action_pressed("interact") and prompt.visible:
+	if event.is_action_pressed("interact") and $Prompt.visible:
 		get_tree().get_root().find_child("HUD", true, false).visible = false
 		open_dialogue()
+
+func update_position():
+	var distanceToTarget = 20
+	var targetPosition = player.position - Vector2(0, -9)
+	if position.distance_to(targetPosition) > distanceToTarget * follower_index:
+		var direction = (targetPosition - position).normalized()
+		velocity = direction * speed
+	else:
+		velocity = Vector2.ZERO
+
+func handle_animation(vel):
+	if vel.length() > 0.1:
+		if abs(vel.x) > abs(vel.y):
+			facing = "right" if vel.x > 0 else "left"
+		else:
+			facing = "front" if vel.y > 0 else "back"
+	
+		anim.play("move_" + facing)
+	else:
+		anim.play("stand_" + facing)
+
+func update_index():
+	if not get_tree(): return
+	
+	for follower in get_tree().get_nodes_in_group("follower"):
+		follower_index = follower.get_index()
 
 func open_dialogue():
 	var dialogue_ui = get_tree().get_root().find_child("Dialogue", true, false)

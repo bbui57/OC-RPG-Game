@@ -1,0 +1,263 @@
+[gd_scene load_steps=13 format=3 uid="uid://dby0h6f5elhn7"]
+
+[ext_resource type="Texture2D" uid="uid://cucnqcsomxvmq" path="res://entities/Yuxiel/Yuxiel.png" id="1_wm3ai"]
+[ext_resource type="Texture2D" uid="uid://dqn2yg5hyyq3g" path="res://entities/Zach/Zach.png" id="2_8dubc"]
+[ext_resource type="Texture2D" uid="uid://donoxxf1ncyke" path="res://entities/Ciri/Ciri.png" id="3_p7vwb"]
+[ext_resource type="Texture2D" uid="uid://b8qoar5vuwcbx" path="res://entities/Brim/Brim.png" id="4_ktti3"]
+[ext_resource type="Texture2D" uid="uid://deug20dw68kxw" path="res://entities/Ciri/ciri_headshot.png" id="5_cgfq5"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7dvkv"]
+atlas = ExtResource("1_wm3ai")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vdcm2"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6rmj2"]
+atlas = ExtResource("2_8dubc")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vsj0x"]
+atlas = ExtResource("3_p7vwb")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qsv74"]
+atlas = ExtResource("4_ktti3")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_h1mc3"]
+bg_color = Color(0.6, 0.6, 0.6, 0.360784)
+
+[sub_resource type="LabelSettings" id="LabelSettings_cof4p"]
+font_size = 80
+
+[node name="UI" type="CanvasLayer"]
+
+[node name="HUD" type="CanvasLayer" parent="."]
+visible = false
+
+[node name="FPSLabel" type="Label" parent="HUD"]
+offset_right = 40.0
+offset_bottom = 23.0
+theme_override_font_sizes/font_size = 60
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HUD"]
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -130.0
+offset_top = -184.5
+offset_bottom = 184.5
+grow_horizontal = 0
+grow_vertical = 2
+metadata/_edit_group_ = true
+
+[node name="Character1" type="TextureRect" parent="HUD/VBoxContainer"]
+layout_mode = 2
+mouse_filter = 2
+texture = SubResource("AtlasTexture_7dvkv")
+expand_mode = 4
+stretch_mode = 5
+
+[node name="Button" type="Button" parent="HUD/VBoxContainer/Character1"]
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+focus_mode = 0
+
+[node name="Panel" type="Panel" parent="HUD/VBoxContainer/Character1"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_vdcm2")
+
+[node name="Character2" type="TextureRect" parent="HUD/VBoxContainer"]
+layout_mode = 2
+mouse_filter = 2
+texture = SubResource("AtlasTexture_6rmj2")
+expand_mode = 4
+stretch_mode = 5
+
+[node name="Button" type="Button" parent="HUD/VBoxContainer/Character2"]
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+focus_mode = 0
+
+[node name="Panel" type="Panel" parent="HUD/VBoxContainer/Character2"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_vdcm2")
+
+[node name="Character3" type="TextureRect" parent="HUD/VBoxContainer"]
+layout_mode = 2
+mouse_filter = 2
+texture = SubResource("AtlasTexture_vsj0x")
+expand_mode = 4
+stretch_mode = 5
+
+[node name="Button" type="Button" parent="HUD/VBoxContainer/Character3"]
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+focus_mode = 0
+
+[node name="Panel" type="Panel" parent="HUD/VBoxContainer/Character3"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_vdcm2")
+
+[node name="Character4" type="TextureRect" parent="HUD/VBoxContainer"]
+layout_mode = 2
+mouse_filter = 2
+texture = SubResource("AtlasTexture_qsv74")
+expand_mode = 4
+stretch_mode = 5
+
+[node name="Button" type="Button" parent="HUD/VBoxContainer/Character4"]
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+focus_mode = 0
+
+[node name="Panel" type="Panel" parent="HUD/VBoxContainer/Character4"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_vdcm2")
+
+[node name="EscMenu" type="CanvasLayer" parent="."]
+visible = false
+follow_viewport_enabled = true
+
+[node name="Panel" type="Panel" parent="EscMenu"]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_h1mc3")
+
+[node name="Control" type="Control" parent="EscMenu/Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.0
+
+[node name="GamePaused" type="Label" parent="EscMenu/Panel/Control"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -264.0
+offset_top = -319.0
+offset_right = 265.0
+offset_bottom = -209.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 80
+text = "Game Paused"
+horizontal_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="EscMenu/Panel/Control"]
+layout_mode = 0
+offset_left = -139.0
+offset_top = -37.0
+offset_right = 139.0
+offset_bottom = 127.0
+metadata/_edit_group_ = true
+
+[node name="Resume" type="Button" parent="EscMenu/Panel/Control/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 52
+text = "Resume"
+
+[node name="Quit" type="Button" parent="EscMenu/Panel/Control/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 52
+text = "Quit Game"
+
+[node name="Dialogue" type="CanvasLayer" parent="."]
+visible = false
+
+[node name="Portrait" type="TextureRect" parent="Dialogue"]
+z_index = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -703.0
+offset_top = -725.0
+grow_horizontal = 0
+grow_vertical = 0
+texture = ExtResource("5_cgfq5")
+
+[node name="DialogueBox" type="Panel" parent="Dialogue"]
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -326.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="DialogueText" type="Label" parent="Dialogue/DialogueBox"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 48.63
+offset_top = -55.0
+offset_right = 220.63
+offset_bottom = 55.0
+grow_vertical = 2
+text = "...what?"
+label_settings = SubResource("LabelSettings_cof4p")

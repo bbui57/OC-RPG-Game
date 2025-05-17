@@ -1,28 +1,32 @@
-extends CharacterBody3D
+extends CharacterBody2D
 
-@export var speed: float = 50.0
-@export var gravity: float = 50.0
-@export var jump: float = 20.0
+@export var speed: float = 200.0
 
-@onready var anim = $AnimatedSprite3D
+@onready var anim = $AnimatedSprite2D
 
 var facing = "front"
 var nearby_characters = []
 
+var path_queue = []
+var max_steps = 32
+
 func _ready():
-	anim = get_node("AnimatedSprite3D")
+	anim = get_node("AnimatedSprite2D")
 	nearby_characters = []
-	$Area3D.connect("body_entered", Callable(self, "_on_Area3D_body_entered"))
-	$Area3D.connect("body_exited", Callable(self, "_on_Area3D_body_exited"))
+	$Area2D.connect("body_entered", Callable(self, "_on_Area2D_body_entered"))
+	$Area2D.connect("body_exited", Callable(self, "_on_Area2D_body_exited"))
+	set_collision_layer(2)
+	set_collision_mask(1)
+	collision_layer &= ~3
 
 func _physics_process(delta):
 	
-	velocity = Vector3.ZERO	
+	z_index = max(position.y * 1.5, 1)
+	velocity = Vector2.ZERO
 	
 	if anim == null:
-		anim = get_node_or_null("AnimatedSprite3D")
-	if not is_on_floor():
-		velocity.y -= gravity * delta
+		anim = get_node_or_null("AnimatedSprite2D")
+
 	if Engine.time_scale == 0:
 		return
 	
@@ -33,52 +37,49 @@ func _physics_process(delta):
 		velocity.x = -1
 		facing = "left"
 	if Input.is_action_pressed("move_down"):
-		velocity.z = 1
+		velocity.y = 1
 		facing = "front"
 	if Input.is_action_pressed("move_up"):
-		velocity.z = -1
+		velocity.y = -1
 		facing = "back"
 	
 	# Handle multiple movement inputs
-	var input = Vector3(
+	var input = Vector2(
 		Input.get_action_strength("move_right") - Input.get_action_strength("move_left"),
-		0,
 		Input.get_action_strength("move_down") - Input.get_action_strength("move_up")
 	)
-	if abs(input.x) > abs(input.z):
-		input.z = 0
+	if abs(input.x) > abs(input.y):
+		input.y = 0
 	else:
 		input.x = 0
+		
+	velocity = input.normalized() * speed
 
 	if velocity.length() > 0:
-		var move_direction = transform.basis * input
-		velocity.x = move_direction.x * speed * delta
-		velocity.z = move_direction.z * speed * delta
-
+		path_queue.append(global_position)
 		anim.play("move_" + facing)
 	else:
 		if anim.is_playing():
 			anim.play("stand_" + facing)
-	
-	if position.y < -1:
-		position.y = 3
+
+	if path_queue.size() > max_steps:
+		path_queue.pop_front()
+
 	move_and_slide()
 	
 	var closest = get_closest_character()
 	if nearby_characters.is_empty():
 		for character in get_tree().get_nodes_in_group("follower"):
-			var prompt = character.get_node("AnimatedSprite3D/UI")
-			prompt.visible = false
+			character.get_node("Prompt").visible = false
 	else:
 		for character in nearby_characters:
-			var prompt = character.get_node("AnimatedSprite3D/UI")
-			prompt.visible = (character == closest) and closest != null
+			character.get_node("Prompt").visible = (character == closest) and closest != null
 
-func _on_Area3D_body_entered(body):
+func _on_Area2D_body_entered(body):
 	if body.is_in_group("follower"):
 		nearby_characters.append(body)
 
-func _on_Area3D_body_exited(body):
+func _on_Area2D_body_exited(body):
 	if body in nearby_characters:
 		nearby_characters.erase(body)
 

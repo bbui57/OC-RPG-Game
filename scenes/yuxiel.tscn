@@ -1,0 +1,61 @@
+[gd_scene load_steps=8 format=3 uid="uid://btvpnwax48eak"]
+
+[ext_resource type="Script" uid="uid://cnq51rbq3hwca" path="res://scripts/player.gd" id="1_4qq2g"]
+[ext_resource type="SpriteFrames" uid="uid://d3pxb5xhnoiux" path="res://entities/Yuxiel/Yuxiel.tres" id="1_owtnj"]
+[ext_resource type="Texture2D" uid="uid://b6ktt8ju2ivlm" path="res://assets/thought_bubble.png" id="3_w0f1i"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_w0f1i"]
+radius = 9.0
+height = 26.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_qkfek"]
+radius = 20.2515
+
+[sub_resource type="SystemFont" id="SystemFont_u1ytn"]
+font_names = PackedStringArray("Retro Gaming")
+multichannel_signed_distance_field = true
+
+[sub_resource type="LabelSettings" id="LabelSettings_w0f1i"]
+font = SubResource("SystemFont_u1ytn")
+font_size = 5
+font_color = Color(0, 0, 0, 1)
+outline_color = Color(0.393086, 0.393086, 0.393085, 1)
+
+[node name="Yuxiel" type="CharacterBody2D"]
+scale = Vector2(4, 4)
+collision_layer = 0
+script = ExtResource("1_4qq2g")
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_w0f1i")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = ExtResource("1_owtnj")
+animation = &"stand_front"
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_qkfek")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="Prompt" type="Node2D" parent="."]
+visible = false
+position = Vector2(21.26, -16.725)
+scale = Vector2(0.66, 0.66)
+
+[node name="ThoughtBubble" type="Sprite2D" parent="Prompt"]
+position = Vector2(-0.895, 1.245)
+scale = Vector2(1.598, 1.427)
+texture = ExtResource("3_w0f1i")
+
+[node name="Label" type="Label" parent="Prompt"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Thought"
+label_settings = SubResource("LabelSettings_w0f1i")
