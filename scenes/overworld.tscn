@@ -12,4 +12,5 @@ script = ExtResource("1_u2ss0")
 tile_set = SubResource("TileSet_m1b5j")
 
 [node name="Placeholder" type="Sprite2D" parent="."]
+position = Vector2(864, 768)
 texture = ExtResource("2_16ktt")

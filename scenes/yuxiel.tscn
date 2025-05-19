@@ -23,16 +23,17 @@ outline_color = Color(0.393086, 0.393086, 0.393085, 1)
 
 [node name="Yuxiel" type="CharacterBody2D"]
 scale = Vector2(4, 4)
-collision_layer = 0
+collision_layer = 2
 script = ExtResource("1_4qq2g")
 metadata/_edit_group_ = true
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("CapsuleShape2D_w0f1i")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = ExtResource("1_owtnj")
 animation = &"stand_front"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_w0f1i")
+disabled = true
 
 [node name="Area2D" type="Area2D" parent="."]
 

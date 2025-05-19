@@ -23,12 +23,12 @@ func _ready():
 	
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	
-	UI.get_node("HUD/VBoxContainer/Character1/Button").connect("pressed", swap_character.bind(0))
-	UI.get_node("HUD/VBoxContainer/Character2/Button").connect("pressed", swap_character.bind(1))
-	UI.get_node("HUD/VBoxContainer/Character3/Button").connect("pressed", swap_character.bind(2))
-	UI.get_node("HUD/VBoxContainer/Character4/Button").connect("pressed", swap_character.bind(3))
+	UI.get_node("HUD/Party/Character1/Button").connect("pressed", swap_character.bind(0))
+	UI.get_node("HUD/Party/Character2/Button").connect("pressed", swap_character.bind(1))
+	UI.get_node("HUD/Party/Character3/Button").connect("pressed", swap_character.bind(2))
+	UI.get_node("HUD/Party/Character4/Button").connect("pressed", swap_character.bind(3))
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	
 	fps_label.text = "FPS: " + str(Engine.get_frames_per_second())
 
@@ -62,11 +62,11 @@ func spawn_characters():
 	var player_instance = load(Global.characters[Global.selected_character]).instantiate()
 	player_instance.set_script(preload("res://scripts/player.gd"))
 	set_player(player_instance)
-	player_instance.position = Vector2.ZERO
+	player_instance.position = Vector2(864, 768)
 
 	add_child(player_instance)
 	
-	var prev_panel = UI.get_node("HUD/VBoxContainer/Character" + str(Global.selected_character + 1) + "/Panel")
+	var prev_panel = UI.get_node("HUD/Party/Character" + str(Global.selected_character + 1) + "/Panel")
 	prev_panel.visible = true
 	
 	var pos = player_instance.position
@@ -105,13 +105,13 @@ func swap_character(new_index):
 	var prev_char_instance = get_node(Global.char_names[Global.selected_character])
 	prev_char_instance.set_script(preload("res://scripts/follower.gd"))
 	prev_char_instance._ready()
-	var prev_panel = UI.get_node("HUD/VBoxContainer/Character" + str(Global.selected_character + 1) + "/Panel")
+	var prev_panel = UI.get_node("HUD/Party/Character" + str(Global.selected_character + 1) + "/Panel")
 	prev_panel.visible = false  
 	
 	var new_char_instance = get_node(Global.char_names[new_index])
 	new_char_instance.set_script(preload("res://scripts/player.gd"))
 	new_char_instance._ready()
-	var new_panel = UI.get_node("HUD/VBoxContainer/Character" + str(new_index + 1) + "/Panel")
+	var new_panel = UI.get_node("HUD/Party/Character" + str(new_index + 1) + "/Panel")
 	new_panel.visible = true
 	
 	set_player(new_char_instance)

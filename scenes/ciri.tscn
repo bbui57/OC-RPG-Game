@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://b6ktt8ju2ivlm" path="res://assets/thought_bubble.png" id="3_c7jo2"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_a7t34"]
-radius = 9.0
+radius = 9.25
 height = 26.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_m6adr"]
@@ -23,7 +23,7 @@ outline_color = Color(0.393086, 0.393086, 0.393085, 1)
 
 [node name="Ciri" type="CharacterBody2D"]
 scale = Vector2(4, 4)
-collision_layer = 0
+collision_layer = 4
 script = ExtResource("1_j4377")
 metadata/_edit_group_ = true
 

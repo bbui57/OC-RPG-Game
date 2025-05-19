@@ -18,14 +18,12 @@ func _ready():
 	collision_layer &= ~2
 	update_index()
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	
 	z_index = max(position.y * 1.5, 1)
 	
 	velocity = Vector2.ZERO
 	
-	if anim == null:
-		anim = get_node_or_null("AnimatedSprite2D")
 	if Engine.time_scale == 0:
 		return
 	
@@ -43,12 +41,11 @@ func _input(event):
 
 func update_position():
 	var distanceToTarget = 20
-	var targetPosition = player.position - Vector2(0, -9)
+	var targetPosition = player.global_position - Vector2(0, -9)
 	if position.distance_to(targetPosition) > distanceToTarget * follower_index:
 		var direction = (targetPosition - position).normalized()
 		velocity = direction * speed
-	else:
-		velocity = Vector2.ZERO
+	else: velocity = Vector2.ZERO
 
 func handle_animation(vel):
 	if vel.length() > 0.1:
@@ -63,9 +60,11 @@ func handle_animation(vel):
 
 func update_index():
 	if not get_tree(): return
-	
+	print(get_tree().get_nodes_in_group("follower"))
 	for follower in get_tree().get_nodes_in_group("follower"):
 		follower_index = follower.get_index()
+		print(follower.name, ": ", follower.get_index())
+		
 
 func open_dialogue():
 	var dialogue_ui = get_tree().get_root().find_child("Dialogue", true, false)

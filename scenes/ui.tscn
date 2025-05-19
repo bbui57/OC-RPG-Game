@@ -45,7 +45,7 @@ offset_right = 40.0
 offset_bottom = 23.0
 theme_override_font_sizes/font_size = 60
 
-[node name="VBoxContainer" type="VBoxContainer" parent="HUD"]
+[node name="Party" type="VBoxContainer" parent="HUD"]
 anchors_preset = 6
 anchor_left = 1.0
 anchor_top = 0.5
@@ -58,14 +58,14 @@ grow_horizontal = 0
 grow_vertical = 2
 metadata/_edit_group_ = true
 
-[node name="Character1" type="TextureRect" parent="HUD/VBoxContainer"]
+[node name="Character1" type="TextureRect" parent="HUD/Party"]
 layout_mode = 2
 mouse_filter = 2
 texture = SubResource("AtlasTexture_7dvkv")
 expand_mode = 4
 stretch_mode = 5
 
-[node name="Button" type="Button" parent="HUD/VBoxContainer/Character1"]
+[node name="Button" type="Button" parent="HUD/Party/Character1"]
 show_behind_parent = true
 layout_mode = 1
 anchors_preset = 15
@@ -75,7 +75,7 @@ grow_horizontal = 2
 grow_vertical = 2
 focus_mode = 0
 
-[node name="Panel" type="Panel" parent="HUD/VBoxContainer/Character1"]
+[node name="Panel" type="Panel" parent="HUD/Party/Character1"]
 visible = false
 layout_mode = 1
 anchors_preset = 15
@@ -85,14 +85,14 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_vdcm2")
 
-[node name="Character2" type="TextureRect" parent="HUD/VBoxContainer"]
+[node name="Character2" type="TextureRect" parent="HUD/Party"]
 layout_mode = 2
 mouse_filter = 2
 texture = SubResource("AtlasTexture_6rmj2")
 expand_mode = 4
 stretch_mode = 5
 
-[node name="Button" type="Button" parent="HUD/VBoxContainer/Character2"]
+[node name="Button" type="Button" parent="HUD/Party/Character2"]
 show_behind_parent = true
 layout_mode = 1
 anchors_preset = 15
@@ -102,7 +102,7 @@ grow_horizontal = 2
 grow_vertical = 2
 focus_mode = 0
 
-[node name="Panel" type="Panel" parent="HUD/VBoxContainer/Character2"]
+[node name="Panel" type="Panel" parent="HUD/Party/Character2"]
 visible = false
 layout_mode = 1
 anchors_preset = 15
@@ -112,14 +112,14 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_vdcm2")
 
-[node name="Character3" type="TextureRect" parent="HUD/VBoxContainer"]
+[node name="Character3" type="TextureRect" parent="HUD/Party"]
 layout_mode = 2
 mouse_filter = 2
 texture = SubResource("AtlasTexture_vsj0x")
 expand_mode = 4
 stretch_mode = 5
 
-[node name="Button" type="Button" parent="HUD/VBoxContainer/Character3"]
+[node name="Button" type="Button" parent="HUD/Party/Character3"]
 show_behind_parent = true
 layout_mode = 1
 anchors_preset = 15
@@ -129,7 +129,7 @@ grow_horizontal = 2
 grow_vertical = 2
 focus_mode = 0
 
-[node name="Panel" type="Panel" parent="HUD/VBoxContainer/Character3"]
+[node name="Panel" type="Panel" parent="HUD/Party/Character3"]
 visible = false
 layout_mode = 1
 anchors_preset = 15
@@ -139,14 +139,14 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_vdcm2")
 
-[node name="Character4" type="TextureRect" parent="HUD/VBoxContainer"]
+[node name="Character4" type="TextureRect" parent="HUD/Party"]
 layout_mode = 2
 mouse_filter = 2
 texture = SubResource("AtlasTexture_qsv74")
 expand_mode = 4
 stretch_mode = 5
 
-[node name="Button" type="Button" parent="HUD/VBoxContainer/Character4"]
+[node name="Button" type="Button" parent="HUD/Party/Character4"]
 show_behind_parent = true
 layout_mode = 1
 anchors_preset = 15
@@ -156,7 +156,7 @@ grow_horizontal = 2
 grow_vertical = 2
 focus_mode = 0
 
-[node name="Panel" type="Panel" parent="HUD/VBoxContainer/Character4"]
+[node name="Panel" type="Panel" parent="HUD/Party/Character4"]
 visible = false
 layout_mode = 1
 anchors_preset = 15

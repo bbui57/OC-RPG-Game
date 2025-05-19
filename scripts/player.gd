@@ -8,7 +8,7 @@ var facing = "front"
 var nearby_characters = []
 
 var path_queue = []
-var max_steps = 32
+var max_steps = 150
 
 func _ready():
 	anim = get_node("AnimatedSprite2D")
@@ -19,13 +19,10 @@ func _ready():
 	set_collision_mask(1)
 	collision_layer &= ~3
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	
 	z_index = max(position.y * 1.5, 1)
 	velocity = Vector2.ZERO
-	
-	if anim == null:
-		anim = get_node_or_null("AnimatedSprite2D")
 
 	if Engine.time_scale == 0:
 		return

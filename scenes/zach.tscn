@@ -23,7 +23,7 @@ outline_color = Color(0.393086, 0.393086, 0.393085, 1)
 
 [node name="Zach" type="CharacterBody2D"]
 scale = Vector2(4, 4)
-collision_layer = 0
+collision_layer = 4
 script = ExtResource("1_lw8nl")
 metadata/_edit_group_ = true
 
