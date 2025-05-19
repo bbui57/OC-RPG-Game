@@ -8,20 +8,21 @@ var facing = "front"
 var nearby_characters = []
 
 var path_queue = []
-var max_steps = 150
+var max_steps = 100
 
 func _ready():
 	anim = get_node("AnimatedSprite2D")
 	nearby_characters = []
-	$Area2D.connect("body_entered", Callable(self, "_on_Area2D_body_entered"))
-	$Area2D.connect("body_exited", Callable(self, "_on_Area2D_body_exited"))
-	set_collision_layer(2)
-	set_collision_mask(1)
-	collision_layer &= ~3
+	if not $Area2D.is_connected("body_entered", Callable(self, "_on_Area2D_body_entered")):
+		$Area2D.connect("body_entered", Callable(self, "_on_Area2D_body_entered"))
+	if not $Area2D.is_connected("body_exited", Callable(self, "_on_Area2D_body_exited")):
+		$Area2D.connect("body_exited", Callable(self, "_on_Area2D_body_exited"))
+	set_collision_layer_value(2, 1)
+	set_collision_mask_value(1, 1)
+	set_collision_layer_value(3, 0)
 
 func _physics_process(_delta):
 	
-	z_index = max(position.y * 1.5, 1)
 	velocity = Vector2.ZERO
 
 	if Engine.time_scale == 0:
@@ -58,7 +59,8 @@ func _physics_process(_delta):
 	else:
 		if anim.is_playing():
 			anim.play("stand_" + facing)
-
+			
+	
 	if path_queue.size() > max_steps:
 		path_queue.pop_front()
 
@@ -71,6 +73,8 @@ func _physics_process(_delta):
 	else:
 		for character in nearby_characters:
 			character.get_node("Prompt").visible = (character == closest) and closest != null
+			if character == closest:
+				print(character.name)
 
 func _on_Area2D_body_entered(body):
 	if body.is_in_group("follower"):

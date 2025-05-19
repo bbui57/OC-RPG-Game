@@ -61,10 +61,10 @@ func toggle_pause():
 func spawn_characters():
 	var player_instance = load(Global.characters[Global.selected_character]).instantiate()
 	player_instance.set_script(preload("res://scripts/player.gd"))
-	set_player(player_instance)
 	player_instance.position = Vector2(864, 768)
 
 	add_child(player_instance)
+	set_player(player_instance)
 	
 	var prev_panel = UI.get_node("HUD/Party/Character" + str(Global.selected_character + 1) + "/Panel")
 	prev_panel.visible = true
@@ -79,38 +79,38 @@ func spawn_characters():
 		
 		pos -= Vector2(0, 64)
 		follower.position = pos
-		follower.follower_index = follower_index
-		follower_index += 1
-		
+
+		add_child(follower)
 		follower.add_to_group("follower")
 		follower.update_index()
-		add_child(follower)
 
 func set_player(character):
 	character.add_to_group("player")
 	character.remove_from_group("follower")
 	for follower in get_tree().get_nodes_in_group("player"):
 		if follower != character:
-			follower.get_node("Camera2D").enabled = false
 			follower.remove_from_group("player")
 			follower.add_to_group("follower")
 			
 	player = character
-	camera = player.get_node("Camera2D")
+	camera = character.get_node("Camera2D")
 	camera.set_zoom(camera_zoom)
 	camera.enabled = true
+	camera.make_current()
 
 func swap_character(new_index):
 	
 	var prev_char_instance = get_node(Global.char_names[Global.selected_character])
+	var new_char_instance = get_node(Global.char_names[new_index])
+	
 	prev_char_instance.set_script(preload("res://scripts/follower.gd"))
+	new_char_instance.set_script(preload("res://scripts/player.gd"))
+	
 	prev_char_instance._ready()
+	new_char_instance._ready()
+	
 	var prev_panel = UI.get_node("HUD/Party/Character" + str(Global.selected_character + 1) + "/Panel")
 	prev_panel.visible = false  
-	
-	var new_char_instance = get_node(Global.char_names[new_index])
-	new_char_instance.set_script(preload("res://scripts/player.gd"))
-	new_char_instance._ready()
 	var new_panel = UI.get_node("HUD/Party/Character" + str(new_index + 1) + "/Panel")
 	new_panel.visible = true
 	
@@ -120,7 +120,7 @@ func swap_character(new_index):
 	for follower in get_tree().get_nodes_in_group("follower"):
 		follower.player = new_char_instance
 		follower.update_index()
-		
+
 
 func _on_resume_button_pressed():
 	Engine.time_scale = 1
