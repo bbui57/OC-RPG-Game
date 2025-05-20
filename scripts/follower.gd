@@ -63,7 +63,6 @@ func update_index():
 	for follower in get_tree().get_nodes_in_group("follower"):
 		follower.follower_index = i
 		i += 1
-		print(follower.name, ": ", follower.follower_index)
 
 func open_dialogue():
 	var dialogue_ui = get_tree().get_root().find_child("Dialogue", true, false)

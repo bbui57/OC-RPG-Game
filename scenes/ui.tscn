@@ -171,7 +171,6 @@ visible = false
 follow_viewport_enabled = true
 
 [node name="Panel" type="Panel" parent="EscMenu"]
-visible = false
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -225,7 +224,6 @@ theme_override_font_sizes/font_size = 52
 text = "Quit Game"
 
 [node name="Dialogue" type="CanvasLayer" parent="."]
-visible = false
 
 [node name="Portrait" type="TextureRect" parent="Dialogue"]
 z_index = 1

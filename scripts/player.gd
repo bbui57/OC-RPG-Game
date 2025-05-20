@@ -20,6 +20,8 @@ func _ready():
 	set_collision_layer_value(2, 1)
 	set_collision_mask_value(1, 1)
 	set_collision_layer_value(3, 0)
+	for i in range(100):
+		path_queue.push_back(global_position)
 
 func _physics_process(_delta):
 	
@@ -73,8 +75,6 @@ func _physics_process(_delta):
 	else:
 		for character in nearby_characters:
 			character.get_node("Prompt").visible = (character == closest) and closest != null
-			if character == closest:
-				print(character.name)
 
 func _on_Area2D_body_entered(body):
 	if body.is_in_group("follower"):
