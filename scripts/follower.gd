@@ -38,7 +38,7 @@ func _input(event):
 		open_dialogue()
 
 func update_position():
-	var path_index = 100 - ((follower_index) * 20)
+	var path_index = 100 - ((follower_index) * 10)
 	if path_index < player.path_queue.size():
 		global_position = global_position.lerp(player.path_queue[path_index], 0.1)
 		
@@ -58,7 +58,6 @@ func handle_animation(vel):
 
 func update_index():
 	if not get_tree(): return
-	print(get_tree().get_nodes_in_group("follower"))
 	var i = 1
 	for follower in get_tree().get_nodes_in_group("follower"):
 		follower.follower_index = i

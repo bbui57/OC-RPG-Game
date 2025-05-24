@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-@export var speed: float = 200.0
+@export var speed: float = 100.0
 
 @onready var anim = $AnimatedSprite2D
 
@@ -31,16 +31,12 @@ func _physics_process(_delta):
 		return
 	
 	if Input.is_action_pressed("move_right"):
-		velocity.x = 1
 		facing = "right"
 	if Input.is_action_pressed("move_left"):
-		velocity.x = -1
 		facing = "left"
 	if Input.is_action_pressed("move_down"):
-		velocity.y = 1
 		facing = "front"
 	if Input.is_action_pressed("move_up"):
-		velocity.y = -1
 		facing = "back"
 	
 	# Handle multiple movement inputs
@@ -55,13 +51,15 @@ func _physics_process(_delta):
 		
 	velocity = input.normalized() * speed
 
+	var prev_anim = anim.get_animation()
+	var new_anim
 	if velocity.length() > 0:
 		path_queue.append(global_position)
-		anim.play("move_" + facing)
+		new_anim = "move_" + facing
 	else:
-		if anim.is_playing():
-			anim.play("stand_" + facing)
-			
+		new_anim = "stand_" + facing
+	if new_anim != prev_anim:
+		anim.play(new_anim)
 	
 	if path_queue.size() > max_steps:
 		path_queue.pop_front()

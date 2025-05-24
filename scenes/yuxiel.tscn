@@ -4,8 +4,8 @@
 [ext_resource type="SpriteFrames" uid="uid://d3pxb5xhnoiux" path="res://entities/Yuxiel/Yuxiel.tres" id="1_owtnj"]
 [ext_resource type="Texture2D" uid="uid://b6ktt8ju2ivlm" path="res://assets/thought_bubble.png" id="3_w0f1i"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_w0f1i"]
-radius = 8.0
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_w0f1i"]
+size = Vector2(9, 4)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_qkfek"]
 radius = 8.0
@@ -22,7 +22,6 @@ outline_color = Color(0.393086, 0.393086, 0.393085, 1)
 
 [node name="Yuxiel" type="CharacterBody2D"]
 y_sort_enabled = true
-scale = Vector2(4, 4)
 collision_layer = 0
 script = ExtResource("1_4qq2g")
 metadata/_edit_group_ = true
@@ -32,8 +31,8 @@ sprite_frames = ExtResource("1_owtnj")
 animation = &"stand_front"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 6)
-shape = SubResource("CircleShape2D_w0f1i")
+position = Vector2(-0.5, 11)
+shape = SubResource("RectangleShape2D_w0f1i")
 
 [node name="Area2D" type="Area2D" parent="."]
 collision_layer = 7
@@ -42,8 +41,6 @@ collision_mask = 7
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 position = Vector2(0, 6)
 shape = SubResource("CircleShape2D_qkfek")
-
-[node name="Camera2D" type="Camera2D" parent="."]
 
 [node name="Prompt" type="Node2D" parent="."]
 visible = false

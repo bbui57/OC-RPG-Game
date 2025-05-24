@@ -4,8 +4,8 @@
 [ext_resource type="SpriteFrames" uid="uid://oy71x12np61e" path="res://entities/Ciri/Ciri.tres" id="1_xws33"]
 [ext_resource type="Texture2D" uid="uid://b6ktt8ju2ivlm" path="res://assets/thought_bubble.png" id="3_c7jo2"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_a7t34"]
-radius = 8.0
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_a7t34"]
+size = Vector2(10, 4)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_m6adr"]
 radius = 8.0
@@ -22,18 +22,17 @@ outline_color = Color(0.393086, 0.393086, 0.393085, 1)
 
 [node name="Ciri" type="CharacterBody2D"]
 y_sort_enabled = true
-scale = Vector2(4, 4)
 collision_layer = 0
 script = ExtResource("1_j4377")
 metadata/_edit_group_ = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = ExtResource("1_xws33")
-animation = &"move_left"
+animation = &"stand_front"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 6)
-shape = SubResource("CircleShape2D_a7t34")
+position = Vector2(0, 11)
+shape = SubResource("RectangleShape2D_a7t34")
 
 [node name="Area2D" type="Area2D" parent="."]
 collision_layer = 7
@@ -42,8 +41,6 @@ collision_mask = 7
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 position = Vector2(0, 6)
 shape = SubResource("CircleShape2D_m6adr")
-
-[node name="Camera2D" type="Camera2D" parent="."]
 
 [node name="Prompt" type="Node2D" parent="."]
 visible = false

@@ -38,7 +38,6 @@ font_size = 80
 [node name="UI" type="CanvasLayer"]
 
 [node name="HUD" type="CanvasLayer" parent="."]
-visible = false
 
 [node name="FPSLabel" type="Label" parent="HUD"]
 offset_right = 40.0
@@ -224,6 +223,7 @@ theme_override_font_sizes/font_size = 52
 text = "Quit Game"
 
 [node name="Dialogue" type="CanvasLayer" parent="."]
+visible = false
 
 [node name="Portrait" type="TextureRect" parent="Dialogue"]
 z_index = 1
