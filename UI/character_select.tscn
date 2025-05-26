@@ -1,10 +1,10 @@
-[gd_scene load_steps=19 format=3 uid="uid://cmfnppc35m51w"]
+[gd_scene load_steps=23 format=3 uid="uid://cmfnppc35m51w"]
 
 [ext_resource type="Script" uid="uid://cnthjfjlvckjs" path="res://scripts/character_select.gd" id="1_0hgph"]
 [ext_resource type="Texture2D" uid="uid://b8qoar5vuwcbx" path="res://entities/Brim/Brim.png" id="2_u6j12"]
 [ext_resource type="Texture2D" uid="uid://donoxxf1ncyke" path="res://entities/Ciri/Ciri.png" id="3_8j5xr"]
 [ext_resource type="Texture2D" uid="uid://cucnqcsomxvmq" path="res://entities/Yuxiel/Yuxiel.png" id="4_insa7"]
-[ext_resource type="Texture2D" uid="uid://btxmju2ictfkd" path="res://entities/Zach/Zach.png" id="5_p8qou"]
+[ext_resource type="Texture2D" uid="uid://dqn2yg5hyyq3g" path="res://entities/Zach/Zach.png" id="5_p8qou"]
 
 [sub_resource type="Gradient" id="Gradient_0dk3e"]
 colors = PackedColorArray(0.281187, 0.281187, 0.281187, 1, 0.583649, 0.3685, 0.451717, 1)
@@ -20,6 +20,10 @@ texture = SubResource("GradientTexture2D_ucc1k")
 atlas = ExtResource("2_u6j12")
 region = Rect2(32, 0, 32, 32)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_0hgph"]
+atlas = ExtResource("2_u6j12")
+region = Rect2(0, 0, 32, 32)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_ucc1k"]
 atlas = ExtResource("2_u6j12")
 region = Rect2(64, 0, 32, 32)
@@ -27,6 +31,10 @@ region = Rect2(64, 0, 32, 32)
 [sub_resource type="AtlasTexture" id="AtlasTexture_j6pnw"]
 atlas = ExtResource("3_8j5xr")
 region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u6j12"]
+atlas = ExtResource("3_8j5xr")
+region = Rect2(0, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_pmkiu"]
 atlas = ExtResource("3_8j5xr")
@@ -36,15 +44,23 @@ region = Rect2(64, 0, 32, 32)
 atlas = ExtResource("4_insa7")
 region = Rect2(32, 0, 32, 32)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_8j5xr"]
+atlas = ExtResource("4_insa7")
+region = Rect2(0, 0, 32, 32)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_qpkcc"]
 atlas = ExtResource("4_insa7")
 region = Rect2(64, 0, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_dg0ud"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_insa7"]
+atlas = ExtResource("5_p8qou")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p8qou"]
 atlas = ExtResource("5_p8qou")
 region = Rect2(32, 0, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_08aom"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_00q01"]
 atlas = ExtResource("5_p8qou")
 region = Rect2(64, 0, 32, 32)
 
@@ -54,45 +70,69 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_0dk3e")
 }, {
+"duration": 0.7,
+"texture": SubResource("AtlasTexture_0hgph")
+}, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_ucc1k")
+}, {
+"duration": 0.7,
+"texture": SubResource("AtlasTexture_0hgph")
 }],
 "loop": true,
 "name": &"Brim",
-"speed": 5.0
+"speed": 7.0
 }, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_j6pnw")
 }, {
+"duration": 0.7,
+"texture": SubResource("AtlasTexture_u6j12")
+}, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_pmkiu")
+}, {
+"duration": 0.7,
+"texture": SubResource("AtlasTexture_u6j12")
 }],
 "loop": true,
 "name": &"Ciri",
-"speed": 5.0
+"speed": 7.0
 }, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_vfamg")
 }, {
+"duration": 0.7,
+"texture": SubResource("AtlasTexture_8j5xr")
+}, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_qpkcc")
+}, {
+"duration": 0.7,
+"texture": SubResource("AtlasTexture_8j5xr")
 }],
 "loop": true,
 "name": &"Yuxiel",
-"speed": 5.0
+"speed": 7.0
 }, {
 "frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_dg0ud")
+"duration": 0.7,
+"texture": SubResource("AtlasTexture_insa7")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_08aom")
+"texture": SubResource("AtlasTexture_p8qou")
+}, {
+"duration": 0.7,
+"texture": SubResource("AtlasTexture_insa7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_00q01")
 }],
 "loop": true,
 "name": &"Zach",
-"speed": 5.0
+"speed": 7.0
 }]
 
 [sub_resource type="ImageTexture" id="ImageTexture_0dk3e"]
@@ -161,7 +201,7 @@ visible = false
 position = Vector2(710, 788)
 scale = Vector2(16.58, 16.58)
 sprite_frames = SubResource("SpriteFrames_bca85")
-animation = &"Yuxiel"
+animation = &"Zach"
 
 [node name="PreviewArt" type="TextureRect" parent="Panel"]
 visible = false

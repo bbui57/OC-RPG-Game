@@ -20,7 +20,7 @@ run/max_fps=60
 Global="*res://scripts/global.gd"
 DialogueManager="*res://addons/dialogue_manager/dialogue_manager.gd"
 SceneManager="*res://scripts/scene_manager.gd"
-UI="*res://scenes/ui.tscn"
+UI="*res://ui/ui.tscn"
 
 [display]
 

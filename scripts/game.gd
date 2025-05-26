@@ -35,8 +35,6 @@ func _process(_delta):
 	camera.global_position = camera.global_position.lerp(player.global_position, 0.1)
 
 func _input(event):
-	if event.is_action_pressed("ui_cancel"): # Escape key
-		toggle_pause()
 	if event.is_action_pressed("swap_char_1"):
 		swap_character(0)
 	if event.is_action_pressed("swap_char_2"):
@@ -52,13 +50,6 @@ func _input(event):
 			camera_zoom += Vector2(0.1, 0.1)
 		camera_zoom = clamp(camera_zoom, Vector2(4, 4), Vector2(10, 10))
 		camera.set_zoom(camera_zoom)
-
-func toggle_pause():
-	if Engine.time_scale == 1:
-		Engine.time_scale = 0
-		pause_menu.visible = true
-	else:
-		_on_resume_button_pressed()
 
 func spawn_characters():
 	var player_instance = load(Global.characters[Global.selected_character]).instantiate()
@@ -120,12 +111,3 @@ func swap_character(new_index):
 	for follower in get_tree().get_nodes_in_group("follower"):
 		follower.player = new_char_instance
 		follower.update_index()
-
-func _on_resume_button_pressed():
-	Engine.time_scale = 1
-	pause_menu.visible = false
-	$EscMenu.visible = false
-	
-func _on_quit_button_pressed():
-	get_tree().quit()
-	

@@ -1,13 +1,14 @@
-[gd_scene load_steps=13 format=3 uid="uid://dby0h6f5elhn7"]
+[gd_scene load_steps=14 format=3 uid="uid://dby0h6f5elhn7"]
 
-[ext_resource type="Texture2D" uid="uid://cucnqcsomxvmq" path="res://entities/Yuxiel/Yuxiel.png" id="1_wm3ai"]
-[ext_resource type="Texture2D" uid="uid://dqn2yg5hyyq3g" path="res://entities/Zach/Zach.png" id="2_8dubc"]
-[ext_resource type="Texture2D" uid="uid://donoxxf1ncyke" path="res://entities/Ciri/Ciri.png" id="3_p7vwb"]
-[ext_resource type="Texture2D" uid="uid://b8qoar5vuwcbx" path="res://entities/Brim/Brim.png" id="4_ktti3"]
-[ext_resource type="Texture2D" uid="uid://deug20dw68kxw" path="res://entities/Ciri/ciri_headshot.png" id="5_cgfq5"]
+[ext_resource type="Texture2D" uid="uid://cucnqcsomxvmq" path="res://entities/Yuxiel/Yuxiel.png" id="1_obcwv"]
+[ext_resource type="Texture2D" uid="uid://dqn2yg5hyyq3g" path="res://entities/Zach/Zach.png" id="2_bo1jx"]
+[ext_resource type="Texture2D" uid="uid://donoxxf1ncyke" path="res://entities/Ciri/Ciri.png" id="3_gycre"]
+[ext_resource type="Texture2D" uid="uid://b8qoar5vuwcbx" path="res://entities/Brim/Brim.png" id="4_pa1oa"]
+[ext_resource type="Script" uid="uid://ddr2nfgwo4kqa" path="res://scripts/escape_menu.gd" id="5_ay4pc"]
+[ext_resource type="Texture2D" uid="uid://deug20dw68kxw" path="res://entities/Ciri/ciri_headshot.png" id="6_bi8hs"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_7dvkv"]
-atlas = ExtResource("1_wm3ai")
+atlas = ExtResource("1_obcwv")
 region = Rect2(0, 0, 32, 32)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vdcm2"]
@@ -18,15 +19,15 @@ border_width_right = 5
 border_width_bottom = 5
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_6rmj2"]
-atlas = ExtResource("2_8dubc")
+atlas = ExtResource("2_bo1jx")
 region = Rect2(0, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_vsj0x"]
-atlas = ExtResource("3_p7vwb")
+atlas = ExtResource("3_gycre")
 region = Rect2(0, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_qsv74"]
-atlas = ExtResource("4_ktti3")
+atlas = ExtResource("4_pa1oa")
 region = Rect2(0, 0, 32, 32)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_h1mc3"]
@@ -38,6 +39,7 @@ font_size = 80
 [node name="UI" type="CanvasLayer"]
 
 [node name="HUD" type="CanvasLayer" parent="."]
+visible = false
 
 [node name="FPSLabel" type="Label" parent="HUD"]
 offset_right = 40.0
@@ -167,7 +169,7 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_vdcm2")
 
 [node name="EscMenu" type="CanvasLayer" parent="."]
 visible = false
-follow_viewport_enabled = true
+script = ExtResource("5_ay4pc")
 
 [node name="Panel" type="Panel" parent="EscMenu"]
 anchors_preset = 15
@@ -236,7 +238,7 @@ offset_left = -703.0
 offset_top = -725.0
 grow_horizontal = 0
 grow_vertical = 0
-texture = ExtResource("5_cgfq5")
+texture = ExtResource("6_bi8hs")
 
 [node name="DialogueBox" type="Panel" parent="Dialogue"]
 anchors_preset = 12
@@ -259,3 +261,6 @@ offset_bottom = 55.0
 grow_vertical = 2
 text = "...what?"
 label_settings = SubResource("LabelSettings_cof4p")
+
+[connection signal="pressed" from="EscMenu/Panel/Control/VBoxContainer/Resume" to="EscMenu" method="_on_resume_button_pressed"]
+[connection signal="pressed" from="EscMenu/Panel/Control/VBoxContainer/Quit" to="EscMenu" method="_on_quit_button_pressed"]
