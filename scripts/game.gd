@@ -54,7 +54,7 @@ func _input(event):
 func spawn_characters():
 	var player_instance = load(Global.characters[Global.selected_character]).instantiate()
 	player_instance.set_script(preload("res://scripts/player.gd"))
-	player_instance.position = Vector2(180, 190)
+	player_instance.position = Vector2(960, 400)
 
 	add_child(player_instance)
 	set_player(player_instance)
@@ -70,7 +70,7 @@ func spawn_characters():
 		var follower = load(Global.characters[i]).instantiate()
 		follower.set_script(preload("res://scripts/follower.gd"))
 		
-		pos -= Vector2(0, 64)
+		pos -= Vector2(0, 10)
 		follower.position = pos
 
 		add_child(follower)
